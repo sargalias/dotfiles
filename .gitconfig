@@ -1,0 +1,21 @@
+[user]
+	name = Spyros Argalias
+	email = sargalias@gmail.com
+[core]
+	editor = code --wait
+	autocrlf = true
+	safecrlf = false
+	excludesfile = ~/.gitignore
+[merge]
+	ff = no
+[branch]
+	autosetuprebase = always
+[rebase]
+	autosquash = true
+[pull]
+	rebase = preserve
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
