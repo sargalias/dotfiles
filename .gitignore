@@ -1,3 +1,36 @@
+# Programming
 .idea/
 .vscode/
 node_modules/
+
+# User
+.bash_history
+.electron/
+.lesshst
+.node-gyp/
+.node_repl_history
+.sonarlint/
+.ssh/
+.v8flags.7.0.276.38-node.16.53
+.windows-build-tools/
+3D Objects/
+AppData/
+Contacts/
+Creative Cloud Files/
+Desktop/
+Documents/
+Downloads/
+Dropbox/
+Favorites/
+Links/
+MicrosoftEdgeBackups/
+Music/
+NTUSER*
+OneDrive/
+Pictures.lnk
+Programming/
+Saved Games/
+Searches/
+Videos/
+_netrc
+.v8flags*
