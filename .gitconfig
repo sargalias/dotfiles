@@ -6,6 +6,7 @@
 	autocrlf = true
 	safecrlf = false
 	excludesfile = ~/.gitignore
+	ignorecase = false
 [merge]
 	ff = no
 [branch]
