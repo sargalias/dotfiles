@@ -5,6 +5,7 @@ node_modules/
 
 # User
 .bash_history
+.config
 .electron/
 .lesshst
 .node-gyp/
