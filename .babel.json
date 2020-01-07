@@ -1,0 +1,906 @@
+{
+  "{\"filename\":\"C:/Users/spyra/Desktop/Work/fem-js-testing/server/test/til-server-test-utils.js\",\"env\":{},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[[[],null],[[],{\"loose\":false}]],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"sourceRoot\":\"C:/Users/spyra/Desktop/Work/fem-js-testing/server/test\",\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false,\"parserOpts\":false,\"generatorOpts\":false}:6.26.3": {
+    "metadata": {
+      "usedHelpers": [
+        "interopRequireWildcard",
+        "interopRequireDefault"
+      ],
+      "marked": [],
+      "modules": {
+        "imports": [
+          {
+            "source": "til-shared/generate",
+            "imported": [
+              "*"
+            ],
+            "specifiers": [
+              {
+                "kind": "namespace",
+                "local": "generate"
+              }
+            ]
+          },
+          {
+            "source": "../src/utils/db",
+            "imported": [
+              "default"
+            ],
+            "specifiers": [
+              {
+                "kind": "named",
+                "imported": "default",
+                "local": "db"
+              }
+            ]
+          }
+        ],
+        "exports": {
+          "exported": [
+            "resetDb",
+            "initDb",
+            "insertTestUser",
+            "generate"
+          ],
+          "specifiers": [
+            {
+              "kind": "local",
+              "local": "resetDb",
+              "exported": "resetDb"
+            },
+            {
+              "kind": "local",
+              "local": "initDb",
+              "exported": "initDb"
+            },
+            {
+              "kind": "local",
+              "local": "insertTestUser",
+              "exported": "insertTestUser"
+            },
+            {
+              "kind": "local",
+              "local": "generate",
+              "exported": "generate"
+            }
+          ]
+        }
+      }
+    },
+    "options": {
+      "filename": "C:/Users/spyra/Desktop/Work/fem-js-testing/server/test/til-server-test-utils.js",
+      "filenameRelative": "C:/Users/spyra/Desktop/Work/fem-js-testing/server/test/til-server-test-utils.js",
+      "env": {},
+      "retainLines": false,
+      "highlightCode": true,
+      "suppressDeprecationMessages": false,
+      "presets": [],
+      "plugins": [
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ]
+      ],
+      "ignore": [],
+      "code": true,
+      "metadata": true,
+      "ast": false,
+      "comments": true,
+      "compact": "auto",
+      "minified": false,
+      "sourceMaps": "both",
+      "sourceMapTarget": "til-server-test-utils.js",
+      "sourceFileName": "til-server-test-utils.js",
+      "sourceRoot": "C:/Users/spyra/Desktop/Work/fem-js-testing/server/test",
+      "babelrc": false,
+      "sourceType": "module",
+      "moduleRoot": "C:/Users/spyra/Desktop/Work/fem-js-testing/server/test",
+      "moduleIds": false,
+      "passPerPreset": false,
+      "parserOpts": false,
+      "generatorOpts": false,
+      "basename": "til-server-test-utils"
+    },
+    "ignored": false,
+    "code": "'use strict';\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.generate = exports.insertTestUser = exports.initDb = exports.resetDb = undefined;\n\nvar _generate = require('til-shared/generate');\n\nvar generate = _interopRequireWildcard(_generate);\n\nvar _db = require('../src/utils/db');\n\nvar _db2 = _interopRequireDefault(_db);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }\n\n// in a real app, a file like this would connect to a real database\n// and calls into that database would be async, which is why\n// these functions are set as async functions even though they\n// actually can run synchronously.\nasync function initDb({\n  users = Array.from({ length: 10 }, () => generate.userData({ id: generate.id() })),\n  posts = users.map(u => generate.postData({ authorId: u.id, id: generate.id() }))\n} = {}) {\n  _db2.default.users = users;\n  _db2.default.posts = posts;\n  return { users, posts };\n}\n\nasync function insertTestUser() {\n  const testUser = generate.userData({\n    id: generate.id(),\n    username: 'til',\n    password: 'til'\n  });\n  _db2.default.users.push(testUser);\n  return testUser;\n}\n\nasync function resetDb({ users, posts, testUser } = {}) {\n  await initDb({ users, posts });\n  if (testUser) {\n    _db2.default.users.push(testUser);\n  }\n  return { users: _db2.default.users, posts: _db2.default.posts };\n}\n\nexports.resetDb = resetDb;\nexports.initDb = initDb;\nexports.insertTestUser = insertTestUser;\nexports.generate = generate;\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRpbC1zZXJ2ZXItdGVzdC11dGlscy5qcyJdLCJuYW1lcyI6WyJnZW5lcmF0ZSIsImluaXREYiIsInVzZXJzIiwiQXJyYXkiLCJmcm9tIiwibGVuZ3RoIiwidXNlckRhdGEiLCJpZCIsInBvc3RzIiwibWFwIiwidSIsInBvc3REYXRhIiwiYXV0aG9ySWQiLCJkYiIsImluc2VydFRlc3RVc2VyIiwidGVzdFVzZXIiLCJ1c2VybmFtZSIsInBhc3N3b3JkIiwicHVzaCIsInJlc2V0RGIiXSwibWFwcGluZ3MiOiI7Ozs7Ozs7QUFJQTs7SUFBWUEsUTs7QUFDWjs7Ozs7Ozs7QUFMQTtBQUNBO0FBQ0E7QUFDQTtBQUlBLGVBQWVDLE1BQWYsQ0FBc0I7QUFDcEJDLFVBQVFDLE1BQU1DLElBQU4sQ0FBVyxFQUFDQyxRQUFRLEVBQVQsRUFBWCxFQUF5QixNQUMvQkwsU0FBU00sUUFBVCxDQUFrQixFQUFDQyxJQUFJUCxTQUFTTyxFQUFULEVBQUwsRUFBbEIsQ0FETSxDQURZO0FBSXBCQyxVQUFRTixNQUFNTyxHQUFOLENBQVVDLEtBQ2hCVixTQUFTVyxRQUFULENBQWtCLEVBQUNDLFVBQVVGLEVBQUVILEVBQWIsRUFBaUJBLElBQUlQLFNBQVNPLEVBQVQsRUFBckIsRUFBbEIsQ0FETTtBQUpZLElBT2xCLEVBUEosRUFPUTtBQUNOTSxlQUFHWCxLQUFILEdBQVdBLEtBQVg7QUFDQVcsZUFBR0wsS0FBSCxHQUFXQSxLQUFYO0FBQ0EsU0FBTyxFQUFDTixLQUFELEVBQVFNLEtBQVIsRUFBUDtBQUNEOztBQUVELGVBQWVNLGNBQWYsR0FBZ0M7QUFDOUIsUUFBTUMsV0FBV2YsU0FBU00sUUFBVCxDQUFrQjtBQUNqQ0MsUUFBSVAsU0FBU08sRUFBVCxFQUQ2QjtBQUVqQ1MsY0FBVSxLQUZ1QjtBQUdqQ0MsY0FBVTtBQUh1QixHQUFsQixDQUFqQjtBQUtBSixlQUFHWCxLQUFILENBQVNnQixJQUFULENBQWNILFFBQWQ7QUFDQSxTQUFPQSxRQUFQO0FBQ0Q7O0FBRUQsZUFBZUksT0FBZixDQUF1QixFQUFDakIsS0FBRCxFQUFRTSxLQUFSLEVBQWVPLFFBQWYsS0FBMkIsRUFBbEQsRUFBc0Q7QUFDcEQsUUFBTWQsT0FBTyxFQUFDQyxLQUFELEVBQVFNLEtBQVIsRUFBUCxDQUFOO0FBQ0EsTUFBSU8sUUFBSixFQUFjO0FBQ1pGLGlCQUFHWCxLQUFILENBQVNnQixJQUFULENBQWNILFFBQWQ7QUFDRDtBQUNELFNBQU8sRUFBQ2IsT0FBT1csYUFBR1gsS0FBWCxFQUFrQk0sT0FBT0ssYUFBR0wsS0FBNUIsRUFBUDtBQUNEOztRQUVPVyxPLEdBQUFBLE87UUFBU2xCLE0sR0FBQUEsTTtRQUFRYSxjLEdBQUFBLGM7UUFBZ0JkLFEsR0FBQUEsUSIsImZpbGUiOiJ0aWwtc2VydmVyLXRlc3QtdXRpbHMuanMiLCJzb3VyY2VSb290IjoiQzovVXNlcnMvc3B5cmEvRGVza3RvcC9Xb3JrL2ZlbS1qcy10ZXN0aW5nL3NlcnZlci90ZXN0Iiwic291cmNlc0NvbnRlbnQiOlsiLy8gaW4gYSByZWFsIGFwcCwgYSBmaWxlIGxpa2UgdGhpcyB3b3VsZCBjb25uZWN0IHRvIGEgcmVhbCBkYXRhYmFzZVxuLy8gYW5kIGNhbGxzIGludG8gdGhhdCBkYXRhYmFzZSB3b3VsZCBiZSBhc3luYywgd2hpY2ggaXMgd2h5XG4vLyB0aGVzZSBmdW5jdGlvbnMgYXJlIHNldCBhcyBhc3luYyBmdW5jdGlvbnMgZXZlbiB0aG91Z2ggdGhleVxuLy8gYWN0dWFsbHkgY2FuIHJ1biBzeW5jaHJvbm91c2x5LlxuaW1wb3J0ICogYXMgZ2VuZXJhdGUgZnJvbSAndGlsLXNoYXJlZC9nZW5lcmF0ZSdcbmltcG9ydCBkYiBmcm9tICcuLi9zcmMvdXRpbHMvZGInXG5cbmFzeW5jIGZ1bmN0aW9uIGluaXREYih7XG4gIHVzZXJzID0gQXJyYXkuZnJvbSh7bGVuZ3RoOiAxMH0sICgpID0+XG4gICAgZ2VuZXJhdGUudXNlckRhdGEoe2lkOiBnZW5lcmF0ZS5pZCgpfSksXG4gICksXG4gIHBvc3RzID0gdXNlcnMubWFwKHUgPT5cbiAgICBnZW5lcmF0ZS5wb3N0RGF0YSh7YXV0aG9ySWQ6IHUuaWQsIGlkOiBnZW5lcmF0ZS5pZCgpfSksXG4gICksXG59ID0ge30pIHtcbiAgZGIudXNlcnMgPSB1c2Vyc1xuICBkYi5wb3N0cyA9IHBvc3RzXG4gIHJldHVybiB7dXNlcnMsIHBvc3RzfVxufVxuXG5hc3luYyBmdW5jdGlvbiBpbnNlcnRUZXN0VXNlcigpIHtcbiAgY29uc3QgdGVzdFVzZXIgPSBnZW5lcmF0ZS51c2VyRGF0YSh7XG4gICAgaWQ6IGdlbmVyYXRlLmlkKCksXG4gICAgdXNlcm5hbWU6ICd0aWwnLFxuICAgIHBhc3N3b3JkOiAndGlsJyxcbiAgfSlcbiAgZGIudXNlcnMucHVzaCh0ZXN0VXNlcilcbiAgcmV0dXJuIHRlc3RVc2VyXG59XG5cbmFzeW5jIGZ1bmN0aW9uIHJlc2V0RGIoe3VzZXJzLCBwb3N0cywgdGVzdFVzZXJ9ID0ge30pIHtcbiAgYXdhaXQgaW5pdERiKHt1c2VycywgcG9zdHN9KVxuICBpZiAodGVzdFVzZXIpIHtcbiAgICBkYi51c2Vycy5wdXNoKHRlc3RVc2VyKVxuICB9XG4gIHJldHVybiB7dXNlcnM6IGRiLnVzZXJzLCBwb3N0czogZGIucG9zdHN9XG59XG5cbmV4cG9ydCB7cmVzZXREYiwgaW5pdERiLCBpbnNlcnRUZXN0VXNlciwgZ2VuZXJhdGV9XG4iXX0=",
+    "ast": null,
+    "map": {
+      "version": 3,
+      "sources": [
+        "til-server-test-utils.js"
+      ],
+      "names": [
+        "generate",
+        "initDb",
+        "users",
+        "Array",
+        "from",
+        "length",
+        "userData",
+        "id",
+        "posts",
+        "map",
+        "u",
+        "postData",
+        "authorId",
+        "db",
+        "insertTestUser",
+        "testUser",
+        "username",
+        "password",
+        "push",
+        "resetDb"
+      ],
+      "mappings": ";;;;;;;AAIA;;IAAYA,Q;;AACZ;;;;;;;;AALA;AACA;AACA;AACA;AAIA,eAAeC,MAAf,CAAsB;AACpBC,UAAQC,MAAMC,IAAN,CAAW,EAACC,QAAQ,EAAT,EAAX,EAAyB,MAC/BL,SAASM,QAAT,CAAkB,EAACC,IAAIP,SAASO,EAAT,EAAL,EAAlB,CADM,CADY;AAIpBC,UAAQN,MAAMO,GAAN,CAAUC,KAChBV,SAASW,QAAT,CAAkB,EAACC,UAAUF,EAAEH,EAAb,EAAiBA,IAAIP,SAASO,EAAT,EAArB,EAAlB,CADM;AAJY,IAOlB,EAPJ,EAOQ;AACNM,eAAGX,KAAH,GAAWA,KAAX;AACAW,eAAGL,KAAH,GAAWA,KAAX;AACA,SAAO,EAACN,KAAD,EAAQM,KAAR,EAAP;AACD;;AAED,eAAeM,cAAf,GAAgC;AAC9B,QAAMC,WAAWf,SAASM,QAAT,CAAkB;AACjCC,QAAIP,SAASO,EAAT,EAD6B;AAEjCS,cAAU,KAFuB;AAGjCC,cAAU;AAHuB,GAAlB,CAAjB;AAKAJ,eAAGX,KAAH,CAASgB,IAAT,CAAcH,QAAd;AACA,SAAOA,QAAP;AACD;;AAED,eAAeI,OAAf,CAAuB,EAACjB,KAAD,EAAQM,KAAR,EAAeO,QAAf,KAA2B,EAAlD,EAAsD;AACpD,QAAMd,OAAO,EAACC,KAAD,EAAQM,KAAR,EAAP,CAAN;AACA,MAAIO,QAAJ,EAAc;AACZF,iBAAGX,KAAH,CAASgB,IAAT,CAAcH,QAAd;AACD;AACD,SAAO,EAACb,OAAOW,aAAGX,KAAX,EAAkBM,OAAOK,aAAGL,KAA5B,EAAP;AACD;;QAEOW,O,GAAAA,O;QAASlB,M,GAAAA,M;QAAQa,c,GAAAA,c;QAAgBd,Q,GAAAA,Q",
+      "file": "til-server-test-utils.js",
+      "sourceRoot": "C:/Users/spyra/Desktop/Work/fem-js-testing/server/test",
+      "sourcesContent": [
+        "// in a real app, a file like this would connect to a real database\n// and calls into that database would be async, which is why\n// these functions are set as async functions even though they\n// actually can run synchronously.\nimport * as generate from 'til-shared/generate'\nimport db from '../src/utils/db'\n\nasync function initDb({\n  users = Array.from({length: 10}, () =>\n    generate.userData({id: generate.id()}),\n  ),\n  posts = users.map(u =>\n    generate.postData({authorId: u.id, id: generate.id()}),\n  ),\n} = {}) {\n  db.users = users\n  db.posts = posts\n  return {users, posts}\n}\n\nasync function insertTestUser() {\n  const testUser = generate.userData({\n    id: generate.id(),\n    username: 'til',\n    password: 'til',\n  })\n  db.users.push(testUser)\n  return testUser\n}\n\nasync function resetDb({users, posts, testUser} = {}) {\n  await initDb({users, posts})\n  if (testUser) {\n    db.users.push(testUser)\n  }\n  return {users: db.users, posts: db.posts}\n}\n\nexport {resetDb, initDb, insertTestUser, generate}\n"
+      ]
+    },
+    "mtime": 1550460389155
+  },
+  "{\"filename\":\"C:/Users/spyra/Desktop/Work/fem-js-testing/shared/generate.js\",\"env\":{},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"sourceRoot\":\"C:/Users/spyra/Desktop/Work/fem-js-testing/shared\",\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false,\"parserOpts\":false,\"generatorOpts\":false}:6.26.3": {
+    "metadata": {
+      "usedHelpers": [],
+      "marked": [],
+      "modules": {
+        "imports": [],
+        "exports": {
+          "exported": [],
+          "specifiers": []
+        }
+      }
+    },
+    "options": {
+      "filename": "C:/Users/spyra/Desktop/Work/fem-js-testing/shared/generate.js",
+      "filenameRelative": "C:/Users/spyra/Desktop/Work/fem-js-testing/shared/generate.js",
+      "env": {},
+      "retainLines": false,
+      "highlightCode": true,
+      "suppressDeprecationMessages": false,
+      "presets": [],
+      "plugins": [],
+      "ignore": [],
+      "code": true,
+      "metadata": true,
+      "ast": false,
+      "comments": true,
+      "compact": "auto",
+      "minified": false,
+      "sourceMaps": "both",
+      "sourceMapTarget": "generate.js",
+      "sourceFileName": "generate.js",
+      "sourceRoot": "C:/Users/spyra/Desktop/Work/fem-js-testing/shared",
+      "babelrc": false,
+      "sourceType": "module",
+      "moduleRoot": "C:/Users/spyra/Desktop/Work/fem-js-testing/shared",
+      "moduleIds": false,
+      "passPerPreset": false,
+      "parserOpts": false,
+      "generatorOpts": false,
+      "basename": "generate"
+    },
+    "ignored": false,
+    "code": "const omit = require('lodash.omit');\nconst faker = require('faker');\nconst { getSaltAndHash, getUserToken } = require('./auth');\n\nfunction userData(overrides = {}) {\n  const password = overrides.password || faker.internet.password();\n  return Object.assign({\n    username: faker.internet.userName()\n  }, getSaltAndHash(password), omit(overrides, ['password']));\n}\n\nfunction postData(overrides) {\n  return Object.assign({\n    title: faker.lorem.words(),\n    // paragraphs return text with \\n\\r for newlines\n    // jsdom doesn't like \\r very much I think...\n    content: faker.lorem.paragraphs().replace(/\\r/g, ''),\n    tags: [faker.lorem.word(), faker.lorem.word(), faker.lorem.word()].filter((w, i, a) => a.indexOf(w) === i),\n    authorId: faker.random.uuid(),\n    date: faker.date.past().toJSON()\n  }, overrides);\n}\n\nfunction loginForm(overrides) {\n  return Object.assign({\n    username: faker.internet.userName(),\n    password: faker.internet.password()\n  }, overrides);\n}\n\nfunction token(user) {\n  return getUserToken(userData(user));\n}\n\nmodule.exports = {\n  userData,\n  postData,\n  loginForm,\n  token,\n  password: faker.internet.password,\n  username: faker.internet.userName,\n  id: faker.random.uuid,\n  title: faker.lorem.words\n};\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImdlbmVyYXRlLmpzIl0sIm5hbWVzIjpbIm9taXQiLCJyZXF1aXJlIiwiZmFrZXIiLCJnZXRTYWx0QW5kSGFzaCIsImdldFVzZXJUb2tlbiIsInVzZXJEYXRhIiwib3ZlcnJpZGVzIiwicGFzc3dvcmQiLCJpbnRlcm5ldCIsIk9iamVjdCIsImFzc2lnbiIsInVzZXJuYW1lIiwidXNlck5hbWUiLCJwb3N0RGF0YSIsInRpdGxlIiwibG9yZW0iLCJ3b3JkcyIsImNvbnRlbnQiLCJwYXJhZ3JhcGhzIiwicmVwbGFjZSIsInRhZ3MiLCJ3b3JkIiwiZmlsdGVyIiwidyIsImkiLCJhIiwiaW5kZXhPZiIsImF1dGhvcklkIiwicmFuZG9tIiwidXVpZCIsImRhdGUiLCJwYXN0IiwidG9KU09OIiwibG9naW5Gb3JtIiwidG9rZW4iLCJ1c2VyIiwibW9kdWxlIiwiZXhwb3J0cyIsImlkIl0sIm1hcHBpbmdzIjoiQUFBQSxNQUFNQSxPQUFPQyxRQUFRLGFBQVIsQ0FBYjtBQUNBLE1BQU1DLFFBQVFELFFBQVEsT0FBUixDQUFkO0FBQ0EsTUFBTSxFQUFDRSxjQUFELEVBQWlCQyxZQUFqQixLQUFpQ0gsUUFBUSxRQUFSLENBQXZDOztBQUVBLFNBQVNJLFFBQVQsQ0FBa0JDLFlBQVksRUFBOUIsRUFBa0M7QUFDaEMsUUFBTUMsV0FBV0QsVUFBVUMsUUFBVixJQUFzQkwsTUFBTU0sUUFBTixDQUFlRCxRQUFmLEVBQXZDO0FBQ0EsU0FBT0UsT0FBT0MsTUFBUCxDQUNMO0FBQ0VDLGNBQVVULE1BQU1NLFFBQU4sQ0FBZUksUUFBZjtBQURaLEdBREssRUFJTFQsZUFBZUksUUFBZixDQUpLLEVBS0xQLEtBQUtNLFNBQUwsRUFBZ0IsQ0FBQyxVQUFELENBQWhCLENBTEssQ0FBUDtBQU9EOztBQUVELFNBQVNPLFFBQVQsQ0FBa0JQLFNBQWxCLEVBQTZCO0FBQzNCLFNBQU9HLE9BQU9DLE1BQVAsQ0FDTDtBQUNFSSxXQUFPWixNQUFNYSxLQUFOLENBQVlDLEtBQVosRUFEVDtBQUVFO0FBQ0E7QUFDQUMsYUFBU2YsTUFBTWEsS0FBTixDQUFZRyxVQUFaLEdBQXlCQyxPQUF6QixDQUFpQyxLQUFqQyxFQUF3QyxFQUF4QyxDQUpYO0FBS0VDLFVBQU0sQ0FBQ2xCLE1BQU1hLEtBQU4sQ0FBWU0sSUFBWixFQUFELEVBQXFCbkIsTUFBTWEsS0FBTixDQUFZTSxJQUFaLEVBQXJCLEVBQXlDbkIsTUFBTWEsS0FBTixDQUFZTSxJQUFaLEVBQXpDLEVBQTZEQyxNQUE3RCxDQUNKLENBQUNDLENBQUQsRUFBSUMsQ0FBSixFQUFPQyxDQUFQLEtBQWFBLEVBQUVDLE9BQUYsQ0FBVUgsQ0FBVixNQUFpQkMsQ0FEMUIsQ0FMUjtBQVFFRyxjQUFVekIsTUFBTTBCLE1BQU4sQ0FBYUMsSUFBYixFQVJaO0FBU0VDLFVBQU01QixNQUFNNEIsSUFBTixDQUFXQyxJQUFYLEdBQWtCQyxNQUFsQjtBQVRSLEdBREssRUFZTDFCLFNBWkssQ0FBUDtBQWNEOztBQUVELFNBQVMyQixTQUFULENBQW1CM0IsU0FBbkIsRUFBOEI7QUFDNUIsU0FBT0csT0FBT0MsTUFBUCxDQUNMO0FBQ0VDLGNBQVVULE1BQU1NLFFBQU4sQ0FBZUksUUFBZixFQURaO0FBRUVMLGNBQVVMLE1BQU1NLFFBQU4sQ0FBZUQsUUFBZjtBQUZaLEdBREssRUFLTEQsU0FMSyxDQUFQO0FBT0Q7O0FBRUQsU0FBUzRCLEtBQVQsQ0FBZUMsSUFBZixFQUFxQjtBQUNuQixTQUFPL0IsYUFBYUMsU0FBUzhCLElBQVQsQ0FBYixDQUFQO0FBQ0Q7O0FBRURDLE9BQU9DLE9BQVAsR0FBaUI7QUFDZmhDLFVBRGU7QUFFZlEsVUFGZTtBQUdmb0IsV0FIZTtBQUlmQyxPQUplO0FBS2YzQixZQUFVTCxNQUFNTSxRQUFOLENBQWVELFFBTFY7QUFNZkksWUFBVVQsTUFBTU0sUUFBTixDQUFlSSxRQU5WO0FBT2YwQixNQUFJcEMsTUFBTTBCLE1BQU4sQ0FBYUMsSUFQRjtBQVFmZixTQUFPWixNQUFNYSxLQUFOLENBQVlDO0FBUkosQ0FBakIiLCJmaWxlIjoiZ2VuZXJhdGUuanMiLCJzb3VyY2VSb290IjoiQzovVXNlcnMvc3B5cmEvRGVza3RvcC9Xb3JrL2ZlbS1qcy10ZXN0aW5nL3NoYXJlZCIsInNvdXJjZXNDb250ZW50IjpbImNvbnN0IG9taXQgPSByZXF1aXJlKCdsb2Rhc2gub21pdCcpXG5jb25zdCBmYWtlciA9IHJlcXVpcmUoJ2Zha2VyJylcbmNvbnN0IHtnZXRTYWx0QW5kSGFzaCwgZ2V0VXNlclRva2VufSA9IHJlcXVpcmUoJy4vYXV0aCcpXG5cbmZ1bmN0aW9uIHVzZXJEYXRhKG92ZXJyaWRlcyA9IHt9KSB7XG4gIGNvbnN0IHBhc3N3b3JkID0gb3ZlcnJpZGVzLnBhc3N3b3JkIHx8IGZha2VyLmludGVybmV0LnBhc3N3b3JkKClcbiAgcmV0dXJuIE9iamVjdC5hc3NpZ24oXG4gICAge1xuICAgICAgdXNlcm5hbWU6IGZha2VyLmludGVybmV0LnVzZXJOYW1lKCksXG4gICAgfSxcbiAgICBnZXRTYWx0QW5kSGFzaChwYXNzd29yZCksXG4gICAgb21pdChvdmVycmlkZXMsIFsncGFzc3dvcmQnXSksXG4gIClcbn1cblxuZnVuY3Rpb24gcG9zdERhdGEob3ZlcnJpZGVzKSB7XG4gIHJldHVybiBPYmplY3QuYXNzaWduKFxuICAgIHtcbiAgICAgIHRpdGxlOiBmYWtlci5sb3JlbS53b3JkcygpLFxuICAgICAgLy8gcGFyYWdyYXBocyByZXR1cm4gdGV4dCB3aXRoIFxcblxcciBmb3IgbmV3bGluZXNcbiAgICAgIC8vIGpzZG9tIGRvZXNuJ3QgbGlrZSBcXHIgdmVyeSBtdWNoIEkgdGhpbmsuLi5cbiAgICAgIGNvbnRlbnQ6IGZha2VyLmxvcmVtLnBhcmFncmFwaHMoKS5yZXBsYWNlKC9cXHIvZywgJycpLFxuICAgICAgdGFnczogW2Zha2VyLmxvcmVtLndvcmQoKSwgZmFrZXIubG9yZW0ud29yZCgpLCBmYWtlci5sb3JlbS53b3JkKCldLmZpbHRlcihcbiAgICAgICAgKHcsIGksIGEpID0+IGEuaW5kZXhPZih3KSA9PT0gaSxcbiAgICAgICksXG4gICAgICBhdXRob3JJZDogZmFrZXIucmFuZG9tLnV1aWQoKSxcbiAgICAgIGRhdGU6IGZha2VyLmRhdGUucGFzdCgpLnRvSlNPTigpLFxuICAgIH0sXG4gICAgb3ZlcnJpZGVzLFxuICApXG59XG5cbmZ1bmN0aW9uIGxvZ2luRm9ybShvdmVycmlkZXMpIHtcbiAgcmV0dXJuIE9iamVjdC5hc3NpZ24oXG4gICAge1xuICAgICAgdXNlcm5hbWU6IGZha2VyLmludGVybmV0LnVzZXJOYW1lKCksXG4gICAgICBwYXNzd29yZDogZmFrZXIuaW50ZXJuZXQucGFzc3dvcmQoKSxcbiAgICB9LFxuICAgIG92ZXJyaWRlcyxcbiAgKVxufVxuXG5mdW5jdGlvbiB0b2tlbih1c2VyKSB7XG4gIHJldHVybiBnZXRVc2VyVG9rZW4odXNlckRhdGEodXNlcikpXG59XG5cbm1vZHVsZS5leHBvcnRzID0ge1xuICB1c2VyRGF0YSxcbiAgcG9zdERhdGEsXG4gIGxvZ2luRm9ybSxcbiAgdG9rZW4sXG4gIHBhc3N3b3JkOiBmYWtlci5pbnRlcm5ldC5wYXNzd29yZCxcbiAgdXNlcm5hbWU6IGZha2VyLmludGVybmV0LnVzZXJOYW1lLFxuICBpZDogZmFrZXIucmFuZG9tLnV1aWQsXG4gIHRpdGxlOiBmYWtlci5sb3JlbS53b3Jkcyxcbn1cbiJdfQ==",
+    "ast": null,
+    "map": {
+      "version": 3,
+      "sources": [
+        "generate.js"
+      ],
+      "names": [
+        "omit",
+        "require",
+        "faker",
+        "getSaltAndHash",
+        "getUserToken",
+        "userData",
+        "overrides",
+        "password",
+        "internet",
+        "Object",
+        "assign",
+        "username",
+        "userName",
+        "postData",
+        "title",
+        "lorem",
+        "words",
+        "content",
+        "paragraphs",
+        "replace",
+        "tags",
+        "word",
+        "filter",
+        "w",
+        "i",
+        "a",
+        "indexOf",
+        "authorId",
+        "random",
+        "uuid",
+        "date",
+        "past",
+        "toJSON",
+        "loginForm",
+        "token",
+        "user",
+        "module",
+        "exports",
+        "id"
+      ],
+      "mappings": "AAAA,MAAMA,OAAOC,QAAQ,aAAR,CAAb;AACA,MAAMC,QAAQD,QAAQ,OAAR,CAAd;AACA,MAAM,EAACE,cAAD,EAAiBC,YAAjB,KAAiCH,QAAQ,QAAR,CAAvC;;AAEA,SAASI,QAAT,CAAkBC,YAAY,EAA9B,EAAkC;AAChC,QAAMC,WAAWD,UAAUC,QAAV,IAAsBL,MAAMM,QAAN,CAAeD,QAAf,EAAvC;AACA,SAAOE,OAAOC,MAAP,CACL;AACEC,cAAUT,MAAMM,QAAN,CAAeI,QAAf;AADZ,GADK,EAILT,eAAeI,QAAf,CAJK,EAKLP,KAAKM,SAAL,EAAgB,CAAC,UAAD,CAAhB,CALK,CAAP;AAOD;;AAED,SAASO,QAAT,CAAkBP,SAAlB,EAA6B;AAC3B,SAAOG,OAAOC,MAAP,CACL;AACEI,WAAOZ,MAAMa,KAAN,CAAYC,KAAZ,EADT;AAEE;AACA;AACAC,aAASf,MAAMa,KAAN,CAAYG,UAAZ,GAAyBC,OAAzB,CAAiC,KAAjC,EAAwC,EAAxC,CAJX;AAKEC,UAAM,CAAClB,MAAMa,KAAN,CAAYM,IAAZ,EAAD,EAAqBnB,MAAMa,KAAN,CAAYM,IAAZ,EAArB,EAAyCnB,MAAMa,KAAN,CAAYM,IAAZ,EAAzC,EAA6DC,MAA7D,CACJ,CAACC,CAAD,EAAIC,CAAJ,EAAOC,CAAP,KAAaA,EAAEC,OAAF,CAAUH,CAAV,MAAiBC,CAD1B,CALR;AAQEG,cAAUzB,MAAM0B,MAAN,CAAaC,IAAb,EARZ;AASEC,UAAM5B,MAAM4B,IAAN,CAAWC,IAAX,GAAkBC,MAAlB;AATR,GADK,EAYL1B,SAZK,CAAP;AAcD;;AAED,SAAS2B,SAAT,CAAmB3B,SAAnB,EAA8B;AAC5B,SAAOG,OAAOC,MAAP,CACL;AACEC,cAAUT,MAAMM,QAAN,CAAeI,QAAf,EADZ;AAEEL,cAAUL,MAAMM,QAAN,CAAeD,QAAf;AAFZ,GADK,EAKLD,SALK,CAAP;AAOD;;AAED,SAAS4B,KAAT,CAAeC,IAAf,EAAqB;AACnB,SAAO/B,aAAaC,SAAS8B,IAAT,CAAb,CAAP;AACD;;AAEDC,OAAOC,OAAP,GAAiB;AACfhC,UADe;AAEfQ,UAFe;AAGfoB,WAHe;AAIfC,OAJe;AAKf3B,YAAUL,MAAMM,QAAN,CAAeD,QALV;AAMfI,YAAUT,MAAMM,QAAN,CAAeI,QANV;AAOf0B,MAAIpC,MAAM0B,MAAN,CAAaC,IAPF;AAQff,SAAOZ,MAAMa,KAAN,CAAYC;AARJ,CAAjB",
+      "file": "generate.js",
+      "sourceRoot": "C:/Users/spyra/Desktop/Work/fem-js-testing/shared",
+      "sourcesContent": [
+        "const omit = require('lodash.omit')\nconst faker = require('faker')\nconst {getSaltAndHash, getUserToken} = require('./auth')\n\nfunction userData(overrides = {}) {\n  const password = overrides.password || faker.internet.password()\n  return Object.assign(\n    {\n      username: faker.internet.userName(),\n    },\n    getSaltAndHash(password),\n    omit(overrides, ['password']),\n  )\n}\n\nfunction postData(overrides) {\n  return Object.assign(\n    {\n      title: faker.lorem.words(),\n      // paragraphs return text with \\n\\r for newlines\n      // jsdom doesn't like \\r very much I think...\n      content: faker.lorem.paragraphs().replace(/\\r/g, ''),\n      tags: [faker.lorem.word(), faker.lorem.word(), faker.lorem.word()].filter(\n        (w, i, a) => a.indexOf(w) === i,\n      ),\n      authorId: faker.random.uuid(),\n      date: faker.date.past().toJSON(),\n    },\n    overrides,\n  )\n}\n\nfunction loginForm(overrides) {\n  return Object.assign(\n    {\n      username: faker.internet.userName(),\n      password: faker.internet.password(),\n    },\n    overrides,\n  )\n}\n\nfunction token(user) {\n  return getUserToken(userData(user))\n}\n\nmodule.exports = {\n  userData,\n  postData,\n  loginForm,\n  token,\n  password: faker.internet.password,\n  username: faker.internet.userName,\n  id: faker.random.uuid,\n  title: faker.lorem.words,\n}\n"
+      ]
+    },
+    "mtime": 1550460389155
+  },
+  "{\"filename\":\"C:/Users/spyra/Desktop/Work/fem-js-testing/shared/auth.js\",\"env\":{},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"sourceRoot\":\"C:/Users/spyra/Desktop/Work/fem-js-testing/shared\",\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false,\"parserOpts\":false,\"generatorOpts\":false}:6.26.3": {
+    "metadata": {
+      "usedHelpers": [],
+      "marked": [],
+      "modules": {
+        "imports": [],
+        "exports": {
+          "exported": [],
+          "specifiers": []
+        }
+      }
+    },
+    "options": {
+      "filename": "C:/Users/spyra/Desktop/Work/fem-js-testing/shared/auth.js",
+      "filenameRelative": "C:/Users/spyra/Desktop/Work/fem-js-testing/shared/auth.js",
+      "env": {},
+      "retainLines": false,
+      "highlightCode": true,
+      "suppressDeprecationMessages": false,
+      "presets": [],
+      "plugins": [],
+      "ignore": [],
+      "code": true,
+      "metadata": true,
+      "ast": false,
+      "comments": true,
+      "compact": "auto",
+      "minified": false,
+      "sourceMaps": "both",
+      "sourceMapTarget": "auth.js",
+      "sourceFileName": "auth.js",
+      "sourceRoot": "C:/Users/spyra/Desktop/Work/fem-js-testing/shared",
+      "babelrc": false,
+      "sourceType": "module",
+      "moduleRoot": "C:/Users/spyra/Desktop/Work/fem-js-testing/shared",
+      "moduleIds": false,
+      "passPerPreset": false,
+      "parserOpts": false,
+      "generatorOpts": false,
+      "basename": "auth"
+    },
+    "ignored": false,
+    "code": "const crypto = require('crypto');\nconst jwt = require('jsonwebtoken');\n\nconst secret = 'secret';\n\nconst iterations = process.env.NODE_ENV === 'production' ? 100000 : 1;\n\n// seconds/minute * minutes/hour * hours/day * 60 days\nconst sixtyDaysInSeconds = 60 * 60 * 24 * 60;\n// to keep our tests reliable, we'll use the requireTime if we're not in production\n// and we'll use Date.now() if we are.\nconst requireTime = Date.now();\nconst now = () => process.env.NODE_ENV === 'production' ? Date.now() : requireTime;\n\nfunction getSaltAndHash(password) {\n  const salt = crypto.randomBytes(16).toString('hex');\n  const hash = crypto.pbkdf2Sync(password, salt, iterations, 512, 'sha512').toString('hex');\n  return { salt, hash };\n}\n\nfunction isPasswordValid(password, { salt, hash }) {\n  return hash === crypto.pbkdf2Sync(password, salt, iterations, 512, 'sha512').toString('hex');\n}\n\nfunction getUserToken({ id, username }) {\n  const issuedAt = Math.floor(now() / 1000);\n  return jwt.sign({\n    id,\n    username,\n    iat: issuedAt,\n    exp: issuedAt + sixtyDaysInSeconds\n  }, secret);\n}\n\nmodule.exports = { getSaltAndHash, isPasswordValid, getUserToken, secret };\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImF1dGguanMiXSwibmFtZXMiOlsiY3J5cHRvIiwicmVxdWlyZSIsImp3dCIsInNlY3JldCIsIml0ZXJhdGlvbnMiLCJwcm9jZXNzIiwiZW52IiwiTk9ERV9FTlYiLCJzaXh0eURheXNJblNlY29uZHMiLCJyZXF1aXJlVGltZSIsIkRhdGUiLCJub3ciLCJnZXRTYWx0QW5kSGFzaCIsInBhc3N3b3JkIiwic2FsdCIsInJhbmRvbUJ5dGVzIiwidG9TdHJpbmciLCJoYXNoIiwicGJrZGYyU3luYyIsImlzUGFzc3dvcmRWYWxpZCIsImdldFVzZXJUb2tlbiIsImlkIiwidXNlcm5hbWUiLCJpc3N1ZWRBdCIsIk1hdGgiLCJmbG9vciIsInNpZ24iLCJpYXQiLCJleHAiLCJtb2R1bGUiLCJleHBvcnRzIl0sIm1hcHBpbmdzIjoiQUFBQSxNQUFNQSxTQUFTQyxRQUFRLFFBQVIsQ0FBZjtBQUNBLE1BQU1DLE1BQU1ELFFBQVEsY0FBUixDQUFaOztBQUVBLE1BQU1FLFNBQVMsUUFBZjs7QUFFQSxNQUFNQyxhQUFhQyxRQUFRQyxHQUFSLENBQVlDLFFBQVosS0FBeUIsWUFBekIsR0FBd0MsTUFBeEMsR0FBaUQsQ0FBcEU7O0FBRUE7QUFDQSxNQUFNQyxxQkFBcUIsS0FBSyxFQUFMLEdBQVUsRUFBVixHQUFlLEVBQTFDO0FBQ0E7QUFDQTtBQUNBLE1BQU1DLGNBQWNDLEtBQUtDLEdBQUwsRUFBcEI7QUFDQSxNQUFNQSxNQUFNLE1BQ1ZOLFFBQVFDLEdBQVIsQ0FBWUMsUUFBWixLQUF5QixZQUF6QixHQUF3Q0csS0FBS0MsR0FBTCxFQUF4QyxHQUFxREYsV0FEdkQ7O0FBR0EsU0FBU0csY0FBVCxDQUF3QkMsUUFBeEIsRUFBa0M7QUFDaEMsUUFBTUMsT0FBT2QsT0FBT2UsV0FBUCxDQUFtQixFQUFuQixFQUF1QkMsUUFBdkIsQ0FBZ0MsS0FBaEMsQ0FBYjtBQUNBLFFBQU1DLE9BQU9qQixPQUNWa0IsVUFEVSxDQUNDTCxRQURELEVBQ1dDLElBRFgsRUFDaUJWLFVBRGpCLEVBQzZCLEdBRDdCLEVBQ2tDLFFBRGxDLEVBRVZZLFFBRlUsQ0FFRCxLQUZDLENBQWI7QUFHQSxTQUFPLEVBQUNGLElBQUQsRUFBT0csSUFBUCxFQUFQO0FBQ0Q7O0FBRUQsU0FBU0UsZUFBVCxDQUF5Qk4sUUFBekIsRUFBbUMsRUFBQ0MsSUFBRCxFQUFPRyxJQUFQLEVBQW5DLEVBQWlEO0FBQy9DLFNBQ0VBLFNBQ0FqQixPQUFPa0IsVUFBUCxDQUFrQkwsUUFBbEIsRUFBNEJDLElBQTVCLEVBQWtDVixVQUFsQyxFQUE4QyxHQUE5QyxFQUFtRCxRQUFuRCxFQUE2RFksUUFBN0QsQ0FBc0UsS0FBdEUsQ0FGRjtBQUlEOztBQUVELFNBQVNJLFlBQVQsQ0FBc0IsRUFBQ0MsRUFBRCxFQUFLQyxRQUFMLEVBQXRCLEVBQXNDO0FBQ3BDLFFBQU1DLFdBQVdDLEtBQUtDLEtBQUwsQ0FBV2QsUUFBUSxJQUFuQixDQUFqQjtBQUNBLFNBQU9ULElBQUl3QixJQUFKLENBQ0w7QUFDRUwsTUFERjtBQUVFQyxZQUZGO0FBR0VLLFNBQUtKLFFBSFA7QUFJRUssU0FBS0wsV0FBV2Y7QUFKbEIsR0FESyxFQU9MTCxNQVBLLENBQVA7QUFTRDs7QUFFRDBCLE9BQU9DLE9BQVAsR0FBaUIsRUFBQ2xCLGNBQUQsRUFBaUJPLGVBQWpCLEVBQWtDQyxZQUFsQyxFQUFnRGpCLE1BQWhELEVBQWpCIiwiZmlsZSI6ImF1dGguanMiLCJzb3VyY2VSb290IjoiQzovVXNlcnMvc3B5cmEvRGVza3RvcC9Xb3JrL2ZlbS1qcy10ZXN0aW5nL3NoYXJlZCIsInNvdXJjZXNDb250ZW50IjpbImNvbnN0IGNyeXB0byA9IHJlcXVpcmUoJ2NyeXB0bycpXG5jb25zdCBqd3QgPSByZXF1aXJlKCdqc29ud2VidG9rZW4nKVxuXG5jb25zdCBzZWNyZXQgPSAnc2VjcmV0J1xuXG5jb25zdCBpdGVyYXRpb25zID0gcHJvY2Vzcy5lbnYuTk9ERV9FTlYgPT09ICdwcm9kdWN0aW9uJyA/IDEwMDAwMCA6IDFcblxuLy8gc2Vjb25kcy9taW51dGUgKiBtaW51dGVzL2hvdXIgKiBob3Vycy9kYXkgKiA2MCBkYXlzXG5jb25zdCBzaXh0eURheXNJblNlY29uZHMgPSA2MCAqIDYwICogMjQgKiA2MFxuLy8gdG8ga2VlcCBvdXIgdGVzdHMgcmVsaWFibGUsIHdlJ2xsIHVzZSB0aGUgcmVxdWlyZVRpbWUgaWYgd2UncmUgbm90IGluIHByb2R1Y3Rpb25cbi8vIGFuZCB3ZSdsbCB1c2UgRGF0ZS5ub3coKSBpZiB3ZSBhcmUuXG5jb25zdCByZXF1aXJlVGltZSA9IERhdGUubm93KClcbmNvbnN0IG5vdyA9ICgpID0+XG4gIHByb2Nlc3MuZW52Lk5PREVfRU5WID09PSAncHJvZHVjdGlvbicgPyBEYXRlLm5vdygpIDogcmVxdWlyZVRpbWVcblxuZnVuY3Rpb24gZ2V0U2FsdEFuZEhhc2gocGFzc3dvcmQpIHtcbiAgY29uc3Qgc2FsdCA9IGNyeXB0by5yYW5kb21CeXRlcygxNikudG9TdHJpbmcoJ2hleCcpXG4gIGNvbnN0IGhhc2ggPSBjcnlwdG9cbiAgICAucGJrZGYyU3luYyhwYXNzd29yZCwgc2FsdCwgaXRlcmF0aW9ucywgNTEyLCAnc2hhNTEyJylcbiAgICAudG9TdHJpbmcoJ2hleCcpXG4gIHJldHVybiB7c2FsdCwgaGFzaH1cbn1cblxuZnVuY3Rpb24gaXNQYXNzd29yZFZhbGlkKHBhc3N3b3JkLCB7c2FsdCwgaGFzaH0pIHtcbiAgcmV0dXJuIChcbiAgICBoYXNoID09PVxuICAgIGNyeXB0by5wYmtkZjJTeW5jKHBhc3N3b3JkLCBzYWx0LCBpdGVyYXRpb25zLCA1MTIsICdzaGE1MTInKS50b1N0cmluZygnaGV4JylcbiAgKVxufVxuXG5mdW5jdGlvbiBnZXRVc2VyVG9rZW4oe2lkLCB1c2VybmFtZX0pIHtcbiAgY29uc3QgaXNzdWVkQXQgPSBNYXRoLmZsb29yKG5vdygpIC8gMTAwMClcbiAgcmV0dXJuIGp3dC5zaWduKFxuICAgIHtcbiAgICAgIGlkLFxuICAgICAgdXNlcm5hbWUsXG4gICAgICBpYXQ6IGlzc3VlZEF0LFxuICAgICAgZXhwOiBpc3N1ZWRBdCArIHNpeHR5RGF5c0luU2Vjb25kcyxcbiAgICB9LFxuICAgIHNlY3JldCxcbiAgKVxufVxuXG5tb2R1bGUuZXhwb3J0cyA9IHtnZXRTYWx0QW5kSGFzaCwgaXNQYXNzd29yZFZhbGlkLCBnZXRVc2VyVG9rZW4sIHNlY3JldH1cbiJdfQ==",
+    "ast": null,
+    "map": {
+      "version": 3,
+      "sources": [
+        "auth.js"
+      ],
+      "names": [
+        "crypto",
+        "require",
+        "jwt",
+        "secret",
+        "iterations",
+        "process",
+        "env",
+        "NODE_ENV",
+        "sixtyDaysInSeconds",
+        "requireTime",
+        "Date",
+        "now",
+        "getSaltAndHash",
+        "password",
+        "salt",
+        "randomBytes",
+        "toString",
+        "hash",
+        "pbkdf2Sync",
+        "isPasswordValid",
+        "getUserToken",
+        "id",
+        "username",
+        "issuedAt",
+        "Math",
+        "floor",
+        "sign",
+        "iat",
+        "exp",
+        "module",
+        "exports"
+      ],
+      "mappings": "AAAA,MAAMA,SAASC,QAAQ,QAAR,CAAf;AACA,MAAMC,MAAMD,QAAQ,cAAR,CAAZ;;AAEA,MAAME,SAAS,QAAf;;AAEA,MAAMC,aAAaC,QAAQC,GAAR,CAAYC,QAAZ,KAAyB,YAAzB,GAAwC,MAAxC,GAAiD,CAApE;;AAEA;AACA,MAAMC,qBAAqB,KAAK,EAAL,GAAU,EAAV,GAAe,EAA1C;AACA;AACA;AACA,MAAMC,cAAcC,KAAKC,GAAL,EAApB;AACA,MAAMA,MAAM,MACVN,QAAQC,GAAR,CAAYC,QAAZ,KAAyB,YAAzB,GAAwCG,KAAKC,GAAL,EAAxC,GAAqDF,WADvD;;AAGA,SAASG,cAAT,CAAwBC,QAAxB,EAAkC;AAChC,QAAMC,OAAOd,OAAOe,WAAP,CAAmB,EAAnB,EAAuBC,QAAvB,CAAgC,KAAhC,CAAb;AACA,QAAMC,OAAOjB,OACVkB,UADU,CACCL,QADD,EACWC,IADX,EACiBV,UADjB,EAC6B,GAD7B,EACkC,QADlC,EAEVY,QAFU,CAED,KAFC,CAAb;AAGA,SAAO,EAACF,IAAD,EAAOG,IAAP,EAAP;AACD;;AAED,SAASE,eAAT,CAAyBN,QAAzB,EAAmC,EAACC,IAAD,EAAOG,IAAP,EAAnC,EAAiD;AAC/C,SACEA,SACAjB,OAAOkB,UAAP,CAAkBL,QAAlB,EAA4BC,IAA5B,EAAkCV,UAAlC,EAA8C,GAA9C,EAAmD,QAAnD,EAA6DY,QAA7D,CAAsE,KAAtE,CAFF;AAID;;AAED,SAASI,YAAT,CAAsB,EAACC,EAAD,EAAKC,QAAL,EAAtB,EAAsC;AACpC,QAAMC,WAAWC,KAAKC,KAAL,CAAWd,QAAQ,IAAnB,CAAjB;AACA,SAAOT,IAAIwB,IAAJ,CACL;AACEL,MADF;AAEEC,YAFF;AAGEK,SAAKJ,QAHP;AAIEK,SAAKL,WAAWf;AAJlB,GADK,EAOLL,MAPK,CAAP;AASD;;AAED0B,OAAOC,OAAP,GAAiB,EAAClB,cAAD,EAAiBO,eAAjB,EAAkCC,YAAlC,EAAgDjB,MAAhD,EAAjB",
+      "file": "auth.js",
+      "sourceRoot": "C:/Users/spyra/Desktop/Work/fem-js-testing/shared",
+      "sourcesContent": [
+        "const crypto = require('crypto')\nconst jwt = require('jsonwebtoken')\n\nconst secret = 'secret'\n\nconst iterations = process.env.NODE_ENV === 'production' ? 100000 : 1\n\n// seconds/minute * minutes/hour * hours/day * 60 days\nconst sixtyDaysInSeconds = 60 * 60 * 24 * 60\n// to keep our tests reliable, we'll use the requireTime if we're not in production\n// and we'll use Date.now() if we are.\nconst requireTime = Date.now()\nconst now = () =>\n  process.env.NODE_ENV === 'production' ? Date.now() : requireTime\n\nfunction getSaltAndHash(password) {\n  const salt = crypto.randomBytes(16).toString('hex')\n  const hash = crypto\n    .pbkdf2Sync(password, salt, iterations, 512, 'sha512')\n    .toString('hex')\n  return {salt, hash}\n}\n\nfunction isPasswordValid(password, {salt, hash}) {\n  return (\n    hash ===\n    crypto.pbkdf2Sync(password, salt, iterations, 512, 'sha512').toString('hex')\n  )\n}\n\nfunction getUserToken({id, username}) {\n  const issuedAt = Math.floor(now() / 1000)\n  return jwt.sign(\n    {\n      id,\n      username,\n      iat: issuedAt,\n      exp: issuedAt + sixtyDaysInSeconds,\n    },\n    secret,\n  )\n}\n\nmodule.exports = {getSaltAndHash, isPasswordValid, getUserToken, secret}\n"
+      ]
+    },
+    "mtime": 1550460389155
+  },
+  "{\"filename\":\"C:/Users/spyra/Desktop/Work/fem-js-testing/server/src/utils/db.js\",\"env\":{},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[[[],null],[[],{\"loose\":false}]],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"sourceRoot\":\"C:/Users/spyra/Desktop/Work/fem-js-testing/server/src/utils\",\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false,\"parserOpts\":false,\"generatorOpts\":false}:6.26.3": {
+    "metadata": {
+      "usedHelpers": [
+        "extends",
+        "interopRequireWildcard"
+      ],
+      "marked": [],
+      "modules": {
+        "imports": [
+          {
+            "source": "til-shared/generate",
+            "imported": [
+              "*"
+            ],
+            "specifiers": [
+              {
+                "kind": "namespace",
+                "local": "generate"
+              }
+            ]
+          }
+        ],
+        "exports": {
+          "exported": [],
+          "specifiers": []
+        }
+      }
+    },
+    "options": {
+      "filename": "C:/Users/spyra/Desktop/Work/fem-js-testing/server/src/utils/db.js",
+      "filenameRelative": "C:/Users/spyra/Desktop/Work/fem-js-testing/server/src/utils/db.js",
+      "env": {},
+      "retainLines": false,
+      "highlightCode": true,
+      "suppressDeprecationMessages": false,
+      "presets": [],
+      "plugins": [
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ]
+      ],
+      "ignore": [],
+      "code": true,
+      "metadata": true,
+      "ast": false,
+      "comments": true,
+      "compact": "auto",
+      "minified": false,
+      "sourceMaps": "both",
+      "sourceMapTarget": "db.js",
+      "sourceFileName": "db.js",
+      "sourceRoot": "C:/Users/spyra/Desktop/Work/fem-js-testing/server/src/utils",
+      "babelrc": false,
+      "sourceType": "module",
+      "moduleRoot": "C:/Users/spyra/Desktop/Work/fem-js-testing/server/src/utils",
+      "moduleIds": false,
+      "passPerPreset": false,
+      "parserOpts": false,
+      "generatorOpts": false,
+      "basename": "db"
+    },
+    "ignored": false,
+    "code": "'use strict';\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };\n\nvar _generate = require('til-shared/generate');\n\nvar generate = _interopRequireWildcard(_generate);\n\nfunction _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }\n\nconst db = {\n  users: [],\n  posts: [],\n\n  insertUser,\n  getUser,\n  getUsers,\n  updateUser,\n  deleteUser,\n\n  insertPost,\n  getPost,\n  getPosts,\n  updatePost,\n  deletePost\n};\n\nasync function insertUser(user) {\n  const newUser = _extends({}, user, {\n    id: generate.id()\n  });\n  db.users.push(newUser);\n  return newUser;\n}\n\nasync function getUsers(filter) {\n  return filter ? db.users.filter(filter) : [...db.users];\n}\n\nasync function getUser(id) {\n  return (await getUsers(u => u.id === id))[0];\n}\n\nasync function updateUser(id, newInfo) {\n  const user = await getUser(id);\n  // doing this to make a new copy of the user to avoid subtle bugs\n  // that rely on mutation.\n  const newUserWithUpdates = Object.assign({}, user, newInfo);\n  db.users[db.users.indexOf(user)] = newUserWithUpdates;\n  return newUserWithUpdates;\n}\n\nasync function deleteUser(id) {\n  const user = await getUser(id);\n  db.users = db.users.filter(u => u.id !== id);\n  return user;\n}\n\nasync function insertPost(post) {\n  const newPost = _extends({}, post, {\n    id: generate.id()\n  });\n  db.posts.push(newPost);\n  return newPost;\n}\n\nasync function getPosts(filter) {\n  return filter ? db.posts.filter(filter) : [...db.posts];\n}\n\nasync function getPost(id) {\n  return (await getPosts(t => t.id === id))[0];\n}\n\nasync function updatePost(id, newInfo) {\n  const post = await getPost(id);\n  // doing this to make a new copy of the user to avoid subtle bugs\n  // that rely on mutation.\n  const newPostWithUpdates = Object.assign({}, post, newInfo);\n  db.posts[db.posts.indexOf(post)] = newPostWithUpdates;\n  return newPostWithUpdates;\n}\n\nasync function deletePost(id) {\n  const post = await getPost(id);\n  db.posts = db.posts.filter(t => t.id !== id);\n  return post;\n}\n\nexports.default = db;\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRiLmpzIl0sIm5hbWVzIjpbImdlbmVyYXRlIiwiZGIiLCJ1c2VycyIsInBvc3RzIiwiaW5zZXJ0VXNlciIsImdldFVzZXIiLCJnZXRVc2VycyIsInVwZGF0ZVVzZXIiLCJkZWxldGVVc2VyIiwiaW5zZXJ0UG9zdCIsImdldFBvc3QiLCJnZXRQb3N0cyIsInVwZGF0ZVBvc3QiLCJkZWxldGVQb3N0IiwidXNlciIsIm5ld1VzZXIiLCJpZCIsInB1c2giLCJmaWx0ZXIiLCJ1IiwibmV3SW5mbyIsIm5ld1VzZXJXaXRoVXBkYXRlcyIsIk9iamVjdCIsImFzc2lnbiIsImluZGV4T2YiLCJwb3N0IiwibmV3UG9zdCIsInQiLCJuZXdQb3N0V2l0aFVwZGF0ZXMiXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBQUE7O0lBQVlBLFE7Ozs7QUFFWixNQUFNQyxLQUFLO0FBQ1RDLFNBQU8sRUFERTtBQUVUQyxTQUFPLEVBRkU7O0FBSVRDLFlBSlM7QUFLVEMsU0FMUztBQU1UQyxVQU5TO0FBT1RDLFlBUFM7QUFRVEMsWUFSUzs7QUFVVEMsWUFWUztBQVdUQyxTQVhTO0FBWVRDLFVBWlM7QUFhVEMsWUFiUztBQWNUQztBQWRTLENBQVg7O0FBaUJBLGVBQWVULFVBQWYsQ0FBMEJVLElBQTFCLEVBQWdDO0FBQzlCLFFBQU1DLHVCQUNERCxJQURDO0FBRUpFLFFBQUloQixTQUFTZ0IsRUFBVDtBQUZBLElBQU47QUFJQWYsS0FBR0MsS0FBSCxDQUFTZSxJQUFULENBQWNGLE9BQWQ7QUFDQSxTQUFPQSxPQUFQO0FBQ0Q7O0FBRUQsZUFBZVQsUUFBZixDQUF3QlksTUFBeEIsRUFBZ0M7QUFDOUIsU0FBT0EsU0FBU2pCLEdBQUdDLEtBQUgsQ0FBU2dCLE1BQVQsQ0FBZ0JBLE1BQWhCLENBQVQsR0FBbUMsQ0FBQyxHQUFHakIsR0FBR0MsS0FBUCxDQUExQztBQUNEOztBQUVELGVBQWVHLE9BQWYsQ0FBdUJXLEVBQXZCLEVBQTJCO0FBQ3pCLFNBQU8sQ0FBQyxNQUFNVixTQUFTYSxLQUFLQSxFQUFFSCxFQUFGLEtBQVNBLEVBQXZCLENBQVAsRUFBbUMsQ0FBbkMsQ0FBUDtBQUNEOztBQUVELGVBQWVULFVBQWYsQ0FBMEJTLEVBQTFCLEVBQThCSSxPQUE5QixFQUF1QztBQUNyQyxRQUFNTixPQUFPLE1BQU1ULFFBQVFXLEVBQVIsQ0FBbkI7QUFDQTtBQUNBO0FBQ0EsUUFBTUsscUJBQXFCQyxPQUFPQyxNQUFQLENBQWMsRUFBZCxFQUFrQlQsSUFBbEIsRUFBd0JNLE9BQXhCLENBQTNCO0FBQ0FuQixLQUFHQyxLQUFILENBQVNELEdBQUdDLEtBQUgsQ0FBU3NCLE9BQVQsQ0FBaUJWLElBQWpCLENBQVQsSUFBbUNPLGtCQUFuQztBQUNBLFNBQU9BLGtCQUFQO0FBQ0Q7O0FBRUQsZUFBZWIsVUFBZixDQUEwQlEsRUFBMUIsRUFBOEI7QUFDNUIsUUFBTUYsT0FBTyxNQUFNVCxRQUFRVyxFQUFSLENBQW5CO0FBQ0FmLEtBQUdDLEtBQUgsR0FBV0QsR0FBR0MsS0FBSCxDQUFTZ0IsTUFBVCxDQUFnQkMsS0FBS0EsRUFBRUgsRUFBRixLQUFTQSxFQUE5QixDQUFYO0FBQ0EsU0FBT0YsSUFBUDtBQUNEOztBQUVELGVBQWVMLFVBQWYsQ0FBMEJnQixJQUExQixFQUFnQztBQUM5QixRQUFNQyx1QkFDREQsSUFEQztBQUVKVCxRQUFJaEIsU0FBU2dCLEVBQVQ7QUFGQSxJQUFOO0FBSUFmLEtBQUdFLEtBQUgsQ0FBU2MsSUFBVCxDQUFjUyxPQUFkO0FBQ0EsU0FBT0EsT0FBUDtBQUNEOztBQUVELGVBQWVmLFFBQWYsQ0FBd0JPLE1BQXhCLEVBQWdDO0FBQzlCLFNBQU9BLFNBQVNqQixHQUFHRSxLQUFILENBQVNlLE1BQVQsQ0FBZ0JBLE1BQWhCLENBQVQsR0FBbUMsQ0FBQyxHQUFHakIsR0FBR0UsS0FBUCxDQUExQztBQUNEOztBQUVELGVBQWVPLE9BQWYsQ0FBdUJNLEVBQXZCLEVBQTJCO0FBQ3pCLFNBQU8sQ0FBQyxNQUFNTCxTQUFTZ0IsS0FBS0EsRUFBRVgsRUFBRixLQUFTQSxFQUF2QixDQUFQLEVBQW1DLENBQW5DLENBQVA7QUFDRDs7QUFFRCxlQUFlSixVQUFmLENBQTBCSSxFQUExQixFQUE4QkksT0FBOUIsRUFBdUM7QUFDckMsUUFBTUssT0FBTyxNQUFNZixRQUFRTSxFQUFSLENBQW5CO0FBQ0E7QUFDQTtBQUNBLFFBQU1ZLHFCQUFxQk4sT0FBT0MsTUFBUCxDQUFjLEVBQWQsRUFBa0JFLElBQWxCLEVBQXdCTCxPQUF4QixDQUEzQjtBQUNBbkIsS0FBR0UsS0FBSCxDQUFTRixHQUFHRSxLQUFILENBQVNxQixPQUFULENBQWlCQyxJQUFqQixDQUFULElBQW1DRyxrQkFBbkM7QUFDQSxTQUFPQSxrQkFBUDtBQUNEOztBQUVELGVBQWVmLFVBQWYsQ0FBMEJHLEVBQTFCLEVBQThCO0FBQzVCLFFBQU1TLE9BQU8sTUFBTWYsUUFBUU0sRUFBUixDQUFuQjtBQUNBZixLQUFHRSxLQUFILEdBQVdGLEdBQUdFLEtBQUgsQ0FBU2UsTUFBVCxDQUFnQlMsS0FBS0EsRUFBRVgsRUFBRixLQUFTQSxFQUE5QixDQUFYO0FBQ0EsU0FBT1MsSUFBUDtBQUNEOztrQkFFY3hCLEUiLCJmaWxlIjoiZGIuanMiLCJzb3VyY2VSb290IjoiQzovVXNlcnMvc3B5cmEvRGVza3RvcC9Xb3JrL2ZlbS1qcy10ZXN0aW5nL3NlcnZlci9zcmMvdXRpbHMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgKiBhcyBnZW5lcmF0ZSBmcm9tICd0aWwtc2hhcmVkL2dlbmVyYXRlJ1xuXG5jb25zdCBkYiA9IHtcbiAgdXNlcnM6IFtdLFxuICBwb3N0czogW10sXG5cbiAgaW5zZXJ0VXNlcixcbiAgZ2V0VXNlcixcbiAgZ2V0VXNlcnMsXG4gIHVwZGF0ZVVzZXIsXG4gIGRlbGV0ZVVzZXIsXG5cbiAgaW5zZXJ0UG9zdCxcbiAgZ2V0UG9zdCxcbiAgZ2V0UG9zdHMsXG4gIHVwZGF0ZVBvc3QsXG4gIGRlbGV0ZVBvc3QsXG59XG5cbmFzeW5jIGZ1bmN0aW9uIGluc2VydFVzZXIodXNlcikge1xuICBjb25zdCBuZXdVc2VyID0ge1xuICAgIC4uLnVzZXIsXG4gICAgaWQ6IGdlbmVyYXRlLmlkKCksXG4gIH1cbiAgZGIudXNlcnMucHVzaChuZXdVc2VyKVxuICByZXR1cm4gbmV3VXNlclxufVxuXG5hc3luYyBmdW5jdGlvbiBnZXRVc2VycyhmaWx0ZXIpIHtcbiAgcmV0dXJuIGZpbHRlciA/IGRiLnVzZXJzLmZpbHRlcihmaWx0ZXIpIDogWy4uLmRiLnVzZXJzXVxufVxuXG5hc3luYyBmdW5jdGlvbiBnZXRVc2VyKGlkKSB7XG4gIHJldHVybiAoYXdhaXQgZ2V0VXNlcnModSA9PiB1LmlkID09PSBpZCkpWzBdXG59XG5cbmFzeW5jIGZ1bmN0aW9uIHVwZGF0ZVVzZXIoaWQsIG5ld0luZm8pIHtcbiAgY29uc3QgdXNlciA9IGF3YWl0IGdldFVzZXIoaWQpXG4gIC8vIGRvaW5nIHRoaXMgdG8gbWFrZSBhIG5ldyBjb3B5IG9mIHRoZSB1c2VyIHRvIGF2b2lkIHN1YnRsZSBidWdzXG4gIC8vIHRoYXQgcmVseSBvbiBtdXRhdGlvbi5cbiAgY29uc3QgbmV3VXNlcldpdGhVcGRhdGVzID0gT2JqZWN0LmFzc2lnbih7fSwgdXNlciwgbmV3SW5mbylcbiAgZGIudXNlcnNbZGIudXNlcnMuaW5kZXhPZih1c2VyKV0gPSBuZXdVc2VyV2l0aFVwZGF0ZXNcbiAgcmV0dXJuIG5ld1VzZXJXaXRoVXBkYXRlc1xufVxuXG5hc3luYyBmdW5jdGlvbiBkZWxldGVVc2VyKGlkKSB7XG4gIGNvbnN0IHVzZXIgPSBhd2FpdCBnZXRVc2VyKGlkKVxuICBkYi51c2VycyA9IGRiLnVzZXJzLmZpbHRlcih1ID0+IHUuaWQgIT09IGlkKVxuICByZXR1cm4gdXNlclxufVxuXG5hc3luYyBmdW5jdGlvbiBpbnNlcnRQb3N0KHBvc3QpIHtcbiAgY29uc3QgbmV3UG9zdCA9IHtcbiAgICAuLi5wb3N0LFxuICAgIGlkOiBnZW5lcmF0ZS5pZCgpLFxuICB9XG4gIGRiLnBvc3RzLnB1c2gobmV3UG9zdClcbiAgcmV0dXJuIG5ld1Bvc3Rcbn1cblxuYXN5bmMgZnVuY3Rpb24gZ2V0UG9zdHMoZmlsdGVyKSB7XG4gIHJldHVybiBmaWx0ZXIgPyBkYi5wb3N0cy5maWx0ZXIoZmlsdGVyKSA6IFsuLi5kYi5wb3N0c11cbn1cblxuYXN5bmMgZnVuY3Rpb24gZ2V0UG9zdChpZCkge1xuICByZXR1cm4gKGF3YWl0IGdldFBvc3RzKHQgPT4gdC5pZCA9PT0gaWQpKVswXVxufVxuXG5hc3luYyBmdW5jdGlvbiB1cGRhdGVQb3N0KGlkLCBuZXdJbmZvKSB7XG4gIGNvbnN0IHBvc3QgPSBhd2FpdCBnZXRQb3N0KGlkKVxuICAvLyBkb2luZyB0aGlzIHRvIG1ha2UgYSBuZXcgY29weSBvZiB0aGUgdXNlciB0byBhdm9pZCBzdWJ0bGUgYnVnc1xuICAvLyB0aGF0IHJlbHkgb24gbXV0YXRpb24uXG4gIGNvbnN0IG5ld1Bvc3RXaXRoVXBkYXRlcyA9IE9iamVjdC5hc3NpZ24oe30sIHBvc3QsIG5ld0luZm8pXG4gIGRiLnBvc3RzW2RiLnBvc3RzLmluZGV4T2YocG9zdCldID0gbmV3UG9zdFdpdGhVcGRhdGVzXG4gIHJldHVybiBuZXdQb3N0V2l0aFVwZGF0ZXNcbn1cblxuYXN5bmMgZnVuY3Rpb24gZGVsZXRlUG9zdChpZCkge1xuICBjb25zdCBwb3N0ID0gYXdhaXQgZ2V0UG9zdChpZClcbiAgZGIucG9zdHMgPSBkYi5wb3N0cy5maWx0ZXIodCA9PiB0LmlkICE9PSBpZClcbiAgcmV0dXJuIHBvc3Rcbn1cblxuZXhwb3J0IGRlZmF1bHQgZGJcbiJdfQ==",
+    "ast": null,
+    "map": {
+      "version": 3,
+      "sources": [
+        "db.js"
+      ],
+      "names": [
+        "generate",
+        "db",
+        "users",
+        "posts",
+        "insertUser",
+        "getUser",
+        "getUsers",
+        "updateUser",
+        "deleteUser",
+        "insertPost",
+        "getPost",
+        "getPosts",
+        "updatePost",
+        "deletePost",
+        "user",
+        "newUser",
+        "id",
+        "push",
+        "filter",
+        "u",
+        "newInfo",
+        "newUserWithUpdates",
+        "Object",
+        "assign",
+        "indexOf",
+        "post",
+        "newPost",
+        "t",
+        "newPostWithUpdates"
+      ],
+      "mappings": ";;;;;;;;AAAA;;IAAYA,Q;;;;AAEZ,MAAMC,KAAK;AACTC,SAAO,EADE;AAETC,SAAO,EAFE;;AAITC,YAJS;AAKTC,SALS;AAMTC,UANS;AAOTC,YAPS;AAQTC,YARS;;AAUTC,YAVS;AAWTC,SAXS;AAYTC,UAZS;AAaTC,YAbS;AAcTC;AAdS,CAAX;;AAiBA,eAAeT,UAAf,CAA0BU,IAA1B,EAAgC;AAC9B,QAAMC,uBACDD,IADC;AAEJE,QAAIhB,SAASgB,EAAT;AAFA,IAAN;AAIAf,KAAGC,KAAH,CAASe,IAAT,CAAcF,OAAd;AACA,SAAOA,OAAP;AACD;;AAED,eAAeT,QAAf,CAAwBY,MAAxB,EAAgC;AAC9B,SAAOA,SAASjB,GAAGC,KAAH,CAASgB,MAAT,CAAgBA,MAAhB,CAAT,GAAmC,CAAC,GAAGjB,GAAGC,KAAP,CAA1C;AACD;;AAED,eAAeG,OAAf,CAAuBW,EAAvB,EAA2B;AACzB,SAAO,CAAC,MAAMV,SAASa,KAAKA,EAAEH,EAAF,KAASA,EAAvB,CAAP,EAAmC,CAAnC,CAAP;AACD;;AAED,eAAeT,UAAf,CAA0BS,EAA1B,EAA8BI,OAA9B,EAAuC;AACrC,QAAMN,OAAO,MAAMT,QAAQW,EAAR,CAAnB;AACA;AACA;AACA,QAAMK,qBAAqBC,OAAOC,MAAP,CAAc,EAAd,EAAkBT,IAAlB,EAAwBM,OAAxB,CAA3B;AACAnB,KAAGC,KAAH,CAASD,GAAGC,KAAH,CAASsB,OAAT,CAAiBV,IAAjB,CAAT,IAAmCO,kBAAnC;AACA,SAAOA,kBAAP;AACD;;AAED,eAAeb,UAAf,CAA0BQ,EAA1B,EAA8B;AAC5B,QAAMF,OAAO,MAAMT,QAAQW,EAAR,CAAnB;AACAf,KAAGC,KAAH,GAAWD,GAAGC,KAAH,CAASgB,MAAT,CAAgBC,KAAKA,EAAEH,EAAF,KAASA,EAA9B,CAAX;AACA,SAAOF,IAAP;AACD;;AAED,eAAeL,UAAf,CAA0BgB,IAA1B,EAAgC;AAC9B,QAAMC,uBACDD,IADC;AAEJT,QAAIhB,SAASgB,EAAT;AAFA,IAAN;AAIAf,KAAGE,KAAH,CAASc,IAAT,CAAcS,OAAd;AACA,SAAOA,OAAP;AACD;;AAED,eAAef,QAAf,CAAwBO,MAAxB,EAAgC;AAC9B,SAAOA,SAASjB,GAAGE,KAAH,CAASe,MAAT,CAAgBA,MAAhB,CAAT,GAAmC,CAAC,GAAGjB,GAAGE,KAAP,CAA1C;AACD;;AAED,eAAeO,OAAf,CAAuBM,EAAvB,EAA2B;AACzB,SAAO,CAAC,MAAML,SAASgB,KAAKA,EAAEX,EAAF,KAASA,EAAvB,CAAP,EAAmC,CAAnC,CAAP;AACD;;AAED,eAAeJ,UAAf,CAA0BI,EAA1B,EAA8BI,OAA9B,EAAuC;AACrC,QAAMK,OAAO,MAAMf,QAAQM,EAAR,CAAnB;AACA;AACA;AACA,QAAMY,qBAAqBN,OAAOC,MAAP,CAAc,EAAd,EAAkBE,IAAlB,EAAwBL,OAAxB,CAA3B;AACAnB,KAAGE,KAAH,CAASF,GAAGE,KAAH,CAASqB,OAAT,CAAiBC,IAAjB,CAAT,IAAmCG,kBAAnC;AACA,SAAOA,kBAAP;AACD;;AAED,eAAef,UAAf,CAA0BG,EAA1B,EAA8B;AAC5B,QAAMS,OAAO,MAAMf,QAAQM,EAAR,CAAnB;AACAf,KAAGE,KAAH,GAAWF,GAAGE,KAAH,CAASe,MAAT,CAAgBS,KAAKA,EAAEX,EAAF,KAASA,EAA9B,CAAX;AACA,SAAOS,IAAP;AACD;;kBAEcxB,E",
+      "file": "db.js",
+      "sourceRoot": "C:/Users/spyra/Desktop/Work/fem-js-testing/server/src/utils",
+      "sourcesContent": [
+        "import * as generate from 'til-shared/generate'\n\nconst db = {\n  users: [],\n  posts: [],\n\n  insertUser,\n  getUser,\n  getUsers,\n  updateUser,\n  deleteUser,\n\n  insertPost,\n  getPost,\n  getPosts,\n  updatePost,\n  deletePost,\n}\n\nasync function insertUser(user) {\n  const newUser = {\n    ...user,\n    id: generate.id(),\n  }\n  db.users.push(newUser)\n  return newUser\n}\n\nasync function getUsers(filter) {\n  return filter ? db.users.filter(filter) : [...db.users]\n}\n\nasync function getUser(id) {\n  return (await getUsers(u => u.id === id))[0]\n}\n\nasync function updateUser(id, newInfo) {\n  const user = await getUser(id)\n  // doing this to make a new copy of the user to avoid subtle bugs\n  // that rely on mutation.\n  const newUserWithUpdates = Object.assign({}, user, newInfo)\n  db.users[db.users.indexOf(user)] = newUserWithUpdates\n  return newUserWithUpdates\n}\n\nasync function deleteUser(id) {\n  const user = await getUser(id)\n  db.users = db.users.filter(u => u.id !== id)\n  return user\n}\n\nasync function insertPost(post) {\n  const newPost = {\n    ...post,\n    id: generate.id(),\n  }\n  db.posts.push(newPost)\n  return newPost\n}\n\nasync function getPosts(filter) {\n  return filter ? db.posts.filter(filter) : [...db.posts]\n}\n\nasync function getPost(id) {\n  return (await getPosts(t => t.id === id))[0]\n}\n\nasync function updatePost(id, newInfo) {\n  const post = await getPost(id)\n  // doing this to make a new copy of the user to avoid subtle bugs\n  // that rely on mutation.\n  const newPostWithUpdates = Object.assign({}, post, newInfo)\n  db.posts[db.posts.indexOf(post)] = newPostWithUpdates\n  return newPostWithUpdates\n}\n\nasync function deletePost(id) {\n  const post = await getPost(id)\n  db.posts = db.posts.filter(t => t.id !== id)\n  return post\n}\n\nexport default db\n"
+      ]
+    },
+    "mtime": 1550460389150
+  },
+  "{\"filename\":\"C:/Users/spyra/Work/fem-testing-react/server/test/til-server-test-utils.js\",\"env\":{},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[[[],null],[[],{\"loose\":false}]],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"sourceRoot\":\"C:/Users/spyra/Work/fem-testing-react/server/test\",\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false,\"parserOpts\":false,\"generatorOpts\":false}:6.26.3": {
+    "metadata": {
+      "usedHelpers": [
+        "interopRequireWildcard",
+        "interopRequireDefault"
+      ],
+      "marked": [],
+      "modules": {
+        "imports": [
+          {
+            "source": "til-shared/generate",
+            "imported": [
+              "*"
+            ],
+            "specifiers": [
+              {
+                "kind": "namespace",
+                "local": "generate"
+              }
+            ]
+          },
+          {
+            "source": "../src/utils/db",
+            "imported": [
+              "default"
+            ],
+            "specifiers": [
+              {
+                "kind": "named",
+                "imported": "default",
+                "local": "db"
+              }
+            ]
+          }
+        ],
+        "exports": {
+          "exported": [
+            "resetDb",
+            "initDb",
+            "insertTestUser",
+            "generate"
+          ],
+          "specifiers": [
+            {
+              "kind": "local",
+              "local": "resetDb",
+              "exported": "resetDb"
+            },
+            {
+              "kind": "local",
+              "local": "initDb",
+              "exported": "initDb"
+            },
+            {
+              "kind": "local",
+              "local": "insertTestUser",
+              "exported": "insertTestUser"
+            },
+            {
+              "kind": "local",
+              "local": "generate",
+              "exported": "generate"
+            }
+          ]
+        }
+      }
+    },
+    "options": {
+      "filename": "C:/Users/spyra/Work/fem-testing-react/server/test/til-server-test-utils.js",
+      "filenameRelative": "C:/Users/spyra/Work/fem-testing-react/server/test/til-server-test-utils.js",
+      "env": {},
+      "retainLines": false,
+      "highlightCode": true,
+      "suppressDeprecationMessages": false,
+      "presets": [],
+      "plugins": [
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ]
+      ],
+      "ignore": [],
+      "code": true,
+      "metadata": true,
+      "ast": false,
+      "comments": true,
+      "compact": "auto",
+      "minified": false,
+      "sourceMaps": "both",
+      "sourceMapTarget": "til-server-test-utils.js",
+      "sourceFileName": "til-server-test-utils.js",
+      "sourceRoot": "C:/Users/spyra/Work/fem-testing-react/server/test",
+      "babelrc": false,
+      "sourceType": "module",
+      "moduleRoot": "C:/Users/spyra/Work/fem-testing-react/server/test",
+      "moduleIds": false,
+      "passPerPreset": false,
+      "parserOpts": false,
+      "generatorOpts": false,
+      "basename": "til-server-test-utils"
+    },
+    "ignored": false,
+    "code": "'use strict';\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.generate = exports.insertTestUser = exports.initDb = exports.resetDb = undefined;\n\nvar _generate = require('til-shared/generate');\n\nvar generate = _interopRequireWildcard(_generate);\n\nvar _db = require('../src/utils/db');\n\nvar _db2 = _interopRequireDefault(_db);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }\n\n// in a real app, a file like this would connect to a real database\n// and calls into that database would be async, which is why\n// these functions are set as async functions even though they\n// actually can run synchronously.\nasync function initDb({\n  users = Array.from({ length: 10 }, () => generate.userData({ id: generate.id() })),\n  posts = users.map(u => generate.postData({ authorId: u.id, id: generate.id() }))\n} = {}) {\n  _db2.default.users = users;\n  _db2.default.posts = posts;\n  return { users, posts };\n}\n\nasync function insertTestUser() {\n  const testUser = generate.userData({\n    id: generate.id(),\n    username: 'til',\n    password: 'til'\n  });\n  _db2.default.users.push(testUser);\n  return testUser;\n}\n\nasync function resetDb({ users, posts, testUser } = {}) {\n  await initDb({ users, posts });\n  if (testUser) {\n    _db2.default.users.push(testUser);\n  }\n  return { users: _db2.default.users, posts: _db2.default.posts };\n}\n\nexports.resetDb = resetDb;\nexports.initDb = initDb;\nexports.insertTestUser = insertTestUser;\nexports.generate = generate;\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRpbC1zZXJ2ZXItdGVzdC11dGlscy5qcyJdLCJuYW1lcyI6WyJnZW5lcmF0ZSIsImluaXREYiIsInVzZXJzIiwiQXJyYXkiLCJmcm9tIiwibGVuZ3RoIiwidXNlckRhdGEiLCJpZCIsInBvc3RzIiwibWFwIiwidSIsInBvc3REYXRhIiwiYXV0aG9ySWQiLCJkYiIsImluc2VydFRlc3RVc2VyIiwidGVzdFVzZXIiLCJ1c2VybmFtZSIsInBhc3N3b3JkIiwicHVzaCIsInJlc2V0RGIiXSwibWFwcGluZ3MiOiI7Ozs7Ozs7QUFJQTs7SUFBWUEsUTs7QUFDWjs7Ozs7Ozs7QUFMQTtBQUNBO0FBQ0E7QUFDQTtBQUlBLGVBQWVDLE1BQWYsQ0FBc0I7QUFDcEJDLFVBQVFDLE1BQU1DLElBQU4sQ0FBVyxFQUFDQyxRQUFRLEVBQVQsRUFBWCxFQUF5QixNQUMvQkwsU0FBU00sUUFBVCxDQUFrQixFQUFDQyxJQUFJUCxTQUFTTyxFQUFULEVBQUwsRUFBbEIsQ0FETSxDQURZO0FBSXBCQyxVQUFRTixNQUFNTyxHQUFOLENBQVVDLEtBQ2hCVixTQUFTVyxRQUFULENBQWtCLEVBQUNDLFVBQVVGLEVBQUVILEVBQWIsRUFBaUJBLElBQUlQLFNBQVNPLEVBQVQsRUFBckIsRUFBbEIsQ0FETTtBQUpZLElBT2xCLEVBUEosRUFPUTtBQUNOTSxlQUFHWCxLQUFILEdBQVdBLEtBQVg7QUFDQVcsZUFBR0wsS0FBSCxHQUFXQSxLQUFYO0FBQ0EsU0FBTyxFQUFDTixLQUFELEVBQVFNLEtBQVIsRUFBUDtBQUNEOztBQUVELGVBQWVNLGNBQWYsR0FBZ0M7QUFDOUIsUUFBTUMsV0FBV2YsU0FBU00sUUFBVCxDQUFrQjtBQUNqQ0MsUUFBSVAsU0FBU08sRUFBVCxFQUQ2QjtBQUVqQ1MsY0FBVSxLQUZ1QjtBQUdqQ0MsY0FBVTtBQUh1QixHQUFsQixDQUFqQjtBQUtBSixlQUFHWCxLQUFILENBQVNnQixJQUFULENBQWNILFFBQWQ7QUFDQSxTQUFPQSxRQUFQO0FBQ0Q7O0FBRUQsZUFBZUksT0FBZixDQUF1QixFQUFDakIsS0FBRCxFQUFRTSxLQUFSLEVBQWVPLFFBQWYsS0FBMkIsRUFBbEQsRUFBc0Q7QUFDcEQsUUFBTWQsT0FBTyxFQUFDQyxLQUFELEVBQVFNLEtBQVIsRUFBUCxDQUFOO0FBQ0EsTUFBSU8sUUFBSixFQUFjO0FBQ1pGLGlCQUFHWCxLQUFILENBQVNnQixJQUFULENBQWNILFFBQWQ7QUFDRDtBQUNELFNBQU8sRUFBQ2IsT0FBT1csYUFBR1gsS0FBWCxFQUFrQk0sT0FBT0ssYUFBR0wsS0FBNUIsRUFBUDtBQUNEOztRQUVPVyxPLEdBQUFBLE87UUFBU2xCLE0sR0FBQUEsTTtRQUFRYSxjLEdBQUFBLGM7UUFBZ0JkLFEsR0FBQUEsUSIsImZpbGUiOiJ0aWwtc2VydmVyLXRlc3QtdXRpbHMuanMiLCJzb3VyY2VSb290IjoiQzovVXNlcnMvc3B5cmEvV29yay9mZW0tdGVzdGluZy1yZWFjdC9zZXJ2ZXIvdGVzdCIsInNvdXJjZXNDb250ZW50IjpbIi8vIGluIGEgcmVhbCBhcHAsIGEgZmlsZSBsaWtlIHRoaXMgd291bGQgY29ubmVjdCB0byBhIHJlYWwgZGF0YWJhc2Vcbi8vIGFuZCBjYWxscyBpbnRvIHRoYXQgZGF0YWJhc2Ugd291bGQgYmUgYXN5bmMsIHdoaWNoIGlzIHdoeVxuLy8gdGhlc2UgZnVuY3Rpb25zIGFyZSBzZXQgYXMgYXN5bmMgZnVuY3Rpb25zIGV2ZW4gdGhvdWdoIHRoZXlcbi8vIGFjdHVhbGx5IGNhbiBydW4gc3luY2hyb25vdXNseS5cbmltcG9ydCAqIGFzIGdlbmVyYXRlIGZyb20gJ3RpbC1zaGFyZWQvZ2VuZXJhdGUnXG5pbXBvcnQgZGIgZnJvbSAnLi4vc3JjL3V0aWxzL2RiJ1xuXG5hc3luYyBmdW5jdGlvbiBpbml0RGIoe1xuICB1c2VycyA9IEFycmF5LmZyb20oe2xlbmd0aDogMTB9LCAoKSA9PlxuICAgIGdlbmVyYXRlLnVzZXJEYXRhKHtpZDogZ2VuZXJhdGUuaWQoKX0pLFxuICApLFxuICBwb3N0cyA9IHVzZXJzLm1hcCh1ID0+XG4gICAgZ2VuZXJhdGUucG9zdERhdGEoe2F1dGhvcklkOiB1LmlkLCBpZDogZ2VuZXJhdGUuaWQoKX0pLFxuICApLFxufSA9IHt9KSB7XG4gIGRiLnVzZXJzID0gdXNlcnNcbiAgZGIucG9zdHMgPSBwb3N0c1xuICByZXR1cm4ge3VzZXJzLCBwb3N0c31cbn1cblxuYXN5bmMgZnVuY3Rpb24gaW5zZXJ0VGVzdFVzZXIoKSB7XG4gIGNvbnN0IHRlc3RVc2VyID0gZ2VuZXJhdGUudXNlckRhdGEoe1xuICAgIGlkOiBnZW5lcmF0ZS5pZCgpLFxuICAgIHVzZXJuYW1lOiAndGlsJyxcbiAgICBwYXNzd29yZDogJ3RpbCcsXG4gIH0pXG4gIGRiLnVzZXJzLnB1c2godGVzdFVzZXIpXG4gIHJldHVybiB0ZXN0VXNlclxufVxuXG5hc3luYyBmdW5jdGlvbiByZXNldERiKHt1c2VycywgcG9zdHMsIHRlc3RVc2VyfSA9IHt9KSB7XG4gIGF3YWl0IGluaXREYih7dXNlcnMsIHBvc3RzfSlcbiAgaWYgKHRlc3RVc2VyKSB7XG4gICAgZGIudXNlcnMucHVzaCh0ZXN0VXNlcilcbiAgfVxuICByZXR1cm4ge3VzZXJzOiBkYi51c2VycywgcG9zdHM6IGRiLnBvc3RzfVxufVxuXG5leHBvcnQge3Jlc2V0RGIsIGluaXREYiwgaW5zZXJ0VGVzdFVzZXIsIGdlbmVyYXRlfVxuIl19",
+    "ast": null,
+    "map": {
+      "version": 3,
+      "sources": [
+        "til-server-test-utils.js"
+      ],
+      "names": [
+        "generate",
+        "initDb",
+        "users",
+        "Array",
+        "from",
+        "length",
+        "userData",
+        "id",
+        "posts",
+        "map",
+        "u",
+        "postData",
+        "authorId",
+        "db",
+        "insertTestUser",
+        "testUser",
+        "username",
+        "password",
+        "push",
+        "resetDb"
+      ],
+      "mappings": ";;;;;;;AAIA;;IAAYA,Q;;AACZ;;;;;;;;AALA;AACA;AACA;AACA;AAIA,eAAeC,MAAf,CAAsB;AACpBC,UAAQC,MAAMC,IAAN,CAAW,EAACC,QAAQ,EAAT,EAAX,EAAyB,MAC/BL,SAASM,QAAT,CAAkB,EAACC,IAAIP,SAASO,EAAT,EAAL,EAAlB,CADM,CADY;AAIpBC,UAAQN,MAAMO,GAAN,CAAUC,KAChBV,SAASW,QAAT,CAAkB,EAACC,UAAUF,EAAEH,EAAb,EAAiBA,IAAIP,SAASO,EAAT,EAArB,EAAlB,CADM;AAJY,IAOlB,EAPJ,EAOQ;AACNM,eAAGX,KAAH,GAAWA,KAAX;AACAW,eAAGL,KAAH,GAAWA,KAAX;AACA,SAAO,EAACN,KAAD,EAAQM,KAAR,EAAP;AACD;;AAED,eAAeM,cAAf,GAAgC;AAC9B,QAAMC,WAAWf,SAASM,QAAT,CAAkB;AACjCC,QAAIP,SAASO,EAAT,EAD6B;AAEjCS,cAAU,KAFuB;AAGjCC,cAAU;AAHuB,GAAlB,CAAjB;AAKAJ,eAAGX,KAAH,CAASgB,IAAT,CAAcH,QAAd;AACA,SAAOA,QAAP;AACD;;AAED,eAAeI,OAAf,CAAuB,EAACjB,KAAD,EAAQM,KAAR,EAAeO,QAAf,KAA2B,EAAlD,EAAsD;AACpD,QAAMd,OAAO,EAACC,KAAD,EAAQM,KAAR,EAAP,CAAN;AACA,MAAIO,QAAJ,EAAc;AACZF,iBAAGX,KAAH,CAASgB,IAAT,CAAcH,QAAd;AACD;AACD,SAAO,EAACb,OAAOW,aAAGX,KAAX,EAAkBM,OAAOK,aAAGL,KAA5B,EAAP;AACD;;QAEOW,O,GAAAA,O;QAASlB,M,GAAAA,M;QAAQa,c,GAAAA,c;QAAgBd,Q,GAAAA,Q",
+      "file": "til-server-test-utils.js",
+      "sourceRoot": "C:/Users/spyra/Work/fem-testing-react/server/test",
+      "sourcesContent": [
+        "// in a real app, a file like this would connect to a real database\n// and calls into that database would be async, which is why\n// these functions are set as async functions even though they\n// actually can run synchronously.\nimport * as generate from 'til-shared/generate'\nimport db from '../src/utils/db'\n\nasync function initDb({\n  users = Array.from({length: 10}, () =>\n    generate.userData({id: generate.id()}),\n  ),\n  posts = users.map(u =>\n    generate.postData({authorId: u.id, id: generate.id()}),\n  ),\n} = {}) {\n  db.users = users\n  db.posts = posts\n  return {users, posts}\n}\n\nasync function insertTestUser() {\n  const testUser = generate.userData({\n    id: generate.id(),\n    username: 'til',\n    password: 'til',\n  })\n  db.users.push(testUser)\n  return testUser\n}\n\nasync function resetDb({users, posts, testUser} = {}) {\n  await initDb({users, posts})\n  if (testUser) {\n    db.users.push(testUser)\n  }\n  return {users: db.users, posts: db.posts}\n}\n\nexport {resetDb, initDb, insertTestUser, generate}\n"
+      ]
+    },
+    "mtime": 1551465920254
+  },
+  "{\"filename\":\"C:/Users/spyra/Work/fem-testing-react/shared/generate.js\",\"env\":{},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"sourceRoot\":\"C:/Users/spyra/Work/fem-testing-react/shared\",\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false,\"parserOpts\":false,\"generatorOpts\":false}:6.26.3": {
+    "metadata": {
+      "usedHelpers": [],
+      "marked": [],
+      "modules": {
+        "imports": [],
+        "exports": {
+          "exported": [],
+          "specifiers": []
+        }
+      }
+    },
+    "options": {
+      "filename": "C:/Users/spyra/Work/fem-testing-react/shared/generate.js",
+      "filenameRelative": "C:/Users/spyra/Work/fem-testing-react/shared/generate.js",
+      "env": {},
+      "retainLines": false,
+      "highlightCode": true,
+      "suppressDeprecationMessages": false,
+      "presets": [],
+      "plugins": [],
+      "ignore": [],
+      "code": true,
+      "metadata": true,
+      "ast": false,
+      "comments": true,
+      "compact": "auto",
+      "minified": false,
+      "sourceMaps": "both",
+      "sourceMapTarget": "generate.js",
+      "sourceFileName": "generate.js",
+      "sourceRoot": "C:/Users/spyra/Work/fem-testing-react/shared",
+      "babelrc": false,
+      "sourceType": "module",
+      "moduleRoot": "C:/Users/spyra/Work/fem-testing-react/shared",
+      "moduleIds": false,
+      "passPerPreset": false,
+      "parserOpts": false,
+      "generatorOpts": false,
+      "basename": "generate"
+    },
+    "ignored": false,
+    "code": "const omit = require('lodash.omit');\nconst faker = require('faker');\nconst { getSaltAndHash, getUserToken } = require('./auth');\n\nfunction userData(overrides = {}) {\n  const password = overrides.password || faker.internet.password();\n  return Object.assign({\n    username: faker.internet.userName()\n  }, getSaltAndHash(password), omit(overrides, ['password']));\n}\n\nfunction postData(overrides) {\n  return Object.assign({\n    title: faker.lorem.words(),\n    // paragraphs return text with \\n\\r for newlines\n    // jsdom doesn't like \\r very much I think...\n    content: faker.lorem.paragraphs().replace(/\\r/g, ''),\n    tags: [faker.lorem.word(), faker.lorem.word(), faker.lorem.word()].filter((w, i, a) => a.indexOf(w) === i),\n    authorId: faker.random.uuid(),\n    date: faker.date.past().toJSON()\n  }, overrides);\n}\n\nfunction loginForm(overrides) {\n  return Object.assign({\n    username: faker.internet.userName(),\n    password: faker.internet.password()\n  }, overrides);\n}\n\nfunction token(user) {\n  return getUserToken(userData(user));\n}\n\nmodule.exports = {\n  userData,\n  postData,\n  loginForm,\n  token,\n  password: faker.internet.password,\n  username: faker.internet.userName,\n  id: faker.random.uuid,\n  title: faker.lorem.words\n};\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImdlbmVyYXRlLmpzIl0sIm5hbWVzIjpbIm9taXQiLCJyZXF1aXJlIiwiZmFrZXIiLCJnZXRTYWx0QW5kSGFzaCIsImdldFVzZXJUb2tlbiIsInVzZXJEYXRhIiwib3ZlcnJpZGVzIiwicGFzc3dvcmQiLCJpbnRlcm5ldCIsIk9iamVjdCIsImFzc2lnbiIsInVzZXJuYW1lIiwidXNlck5hbWUiLCJwb3N0RGF0YSIsInRpdGxlIiwibG9yZW0iLCJ3b3JkcyIsImNvbnRlbnQiLCJwYXJhZ3JhcGhzIiwicmVwbGFjZSIsInRhZ3MiLCJ3b3JkIiwiZmlsdGVyIiwidyIsImkiLCJhIiwiaW5kZXhPZiIsImF1dGhvcklkIiwicmFuZG9tIiwidXVpZCIsImRhdGUiLCJwYXN0IiwidG9KU09OIiwibG9naW5Gb3JtIiwidG9rZW4iLCJ1c2VyIiwibW9kdWxlIiwiZXhwb3J0cyIsImlkIl0sIm1hcHBpbmdzIjoiQUFBQSxNQUFNQSxPQUFPQyxRQUFRLGFBQVIsQ0FBYjtBQUNBLE1BQU1DLFFBQVFELFFBQVEsT0FBUixDQUFkO0FBQ0EsTUFBTSxFQUFDRSxjQUFELEVBQWlCQyxZQUFqQixLQUFpQ0gsUUFBUSxRQUFSLENBQXZDOztBQUVBLFNBQVNJLFFBQVQsQ0FBa0JDLFlBQVksRUFBOUIsRUFBa0M7QUFDaEMsUUFBTUMsV0FBV0QsVUFBVUMsUUFBVixJQUFzQkwsTUFBTU0sUUFBTixDQUFlRCxRQUFmLEVBQXZDO0FBQ0EsU0FBT0UsT0FBT0MsTUFBUCxDQUNMO0FBQ0VDLGNBQVVULE1BQU1NLFFBQU4sQ0FBZUksUUFBZjtBQURaLEdBREssRUFJTFQsZUFBZUksUUFBZixDQUpLLEVBS0xQLEtBQUtNLFNBQUwsRUFBZ0IsQ0FBQyxVQUFELENBQWhCLENBTEssQ0FBUDtBQU9EOztBQUVELFNBQVNPLFFBQVQsQ0FBa0JQLFNBQWxCLEVBQTZCO0FBQzNCLFNBQU9HLE9BQU9DLE1BQVAsQ0FDTDtBQUNFSSxXQUFPWixNQUFNYSxLQUFOLENBQVlDLEtBQVosRUFEVDtBQUVFO0FBQ0E7QUFDQUMsYUFBU2YsTUFBTWEsS0FBTixDQUFZRyxVQUFaLEdBQXlCQyxPQUF6QixDQUFpQyxLQUFqQyxFQUF3QyxFQUF4QyxDQUpYO0FBS0VDLFVBQU0sQ0FBQ2xCLE1BQU1hLEtBQU4sQ0FBWU0sSUFBWixFQUFELEVBQXFCbkIsTUFBTWEsS0FBTixDQUFZTSxJQUFaLEVBQXJCLEVBQXlDbkIsTUFBTWEsS0FBTixDQUFZTSxJQUFaLEVBQXpDLEVBQTZEQyxNQUE3RCxDQUNKLENBQUNDLENBQUQsRUFBSUMsQ0FBSixFQUFPQyxDQUFQLEtBQWFBLEVBQUVDLE9BQUYsQ0FBVUgsQ0FBVixNQUFpQkMsQ0FEMUIsQ0FMUjtBQVFFRyxjQUFVekIsTUFBTTBCLE1BQU4sQ0FBYUMsSUFBYixFQVJaO0FBU0VDLFVBQU01QixNQUFNNEIsSUFBTixDQUFXQyxJQUFYLEdBQWtCQyxNQUFsQjtBQVRSLEdBREssRUFZTDFCLFNBWkssQ0FBUDtBQWNEOztBQUVELFNBQVMyQixTQUFULENBQW1CM0IsU0FBbkIsRUFBOEI7QUFDNUIsU0FBT0csT0FBT0MsTUFBUCxDQUNMO0FBQ0VDLGNBQVVULE1BQU1NLFFBQU4sQ0FBZUksUUFBZixFQURaO0FBRUVMLGNBQVVMLE1BQU1NLFFBQU4sQ0FBZUQsUUFBZjtBQUZaLEdBREssRUFLTEQsU0FMSyxDQUFQO0FBT0Q7O0FBRUQsU0FBUzRCLEtBQVQsQ0FBZUMsSUFBZixFQUFxQjtBQUNuQixTQUFPL0IsYUFBYUMsU0FBUzhCLElBQVQsQ0FBYixDQUFQO0FBQ0Q7O0FBRURDLE9BQU9DLE9BQVAsR0FBaUI7QUFDZmhDLFVBRGU7QUFFZlEsVUFGZTtBQUdmb0IsV0FIZTtBQUlmQyxPQUplO0FBS2YzQixZQUFVTCxNQUFNTSxRQUFOLENBQWVELFFBTFY7QUFNZkksWUFBVVQsTUFBTU0sUUFBTixDQUFlSSxRQU5WO0FBT2YwQixNQUFJcEMsTUFBTTBCLE1BQU4sQ0FBYUMsSUFQRjtBQVFmZixTQUFPWixNQUFNYSxLQUFOLENBQVlDO0FBUkosQ0FBakIiLCJmaWxlIjoiZ2VuZXJhdGUuanMiLCJzb3VyY2VSb290IjoiQzovVXNlcnMvc3B5cmEvV29yay9mZW0tdGVzdGluZy1yZWFjdC9zaGFyZWQiLCJzb3VyY2VzQ29udGVudCI6WyJjb25zdCBvbWl0ID0gcmVxdWlyZSgnbG9kYXNoLm9taXQnKVxuY29uc3QgZmFrZXIgPSByZXF1aXJlKCdmYWtlcicpXG5jb25zdCB7Z2V0U2FsdEFuZEhhc2gsIGdldFVzZXJUb2tlbn0gPSByZXF1aXJlKCcuL2F1dGgnKVxuXG5mdW5jdGlvbiB1c2VyRGF0YShvdmVycmlkZXMgPSB7fSkge1xuICBjb25zdCBwYXNzd29yZCA9IG92ZXJyaWRlcy5wYXNzd29yZCB8fCBmYWtlci5pbnRlcm5ldC5wYXNzd29yZCgpXG4gIHJldHVybiBPYmplY3QuYXNzaWduKFxuICAgIHtcbiAgICAgIHVzZXJuYW1lOiBmYWtlci5pbnRlcm5ldC51c2VyTmFtZSgpLFxuICAgIH0sXG4gICAgZ2V0U2FsdEFuZEhhc2gocGFzc3dvcmQpLFxuICAgIG9taXQob3ZlcnJpZGVzLCBbJ3Bhc3N3b3JkJ10pLFxuICApXG59XG5cbmZ1bmN0aW9uIHBvc3REYXRhKG92ZXJyaWRlcykge1xuICByZXR1cm4gT2JqZWN0LmFzc2lnbihcbiAgICB7XG4gICAgICB0aXRsZTogZmFrZXIubG9yZW0ud29yZHMoKSxcbiAgICAgIC8vIHBhcmFncmFwaHMgcmV0dXJuIHRleHQgd2l0aCBcXG5cXHIgZm9yIG5ld2xpbmVzXG4gICAgICAvLyBqc2RvbSBkb2Vzbid0IGxpa2UgXFxyIHZlcnkgbXVjaCBJIHRoaW5rLi4uXG4gICAgICBjb250ZW50OiBmYWtlci5sb3JlbS5wYXJhZ3JhcGhzKCkucmVwbGFjZSgvXFxyL2csICcnKSxcbiAgICAgIHRhZ3M6IFtmYWtlci5sb3JlbS53b3JkKCksIGZha2VyLmxvcmVtLndvcmQoKSwgZmFrZXIubG9yZW0ud29yZCgpXS5maWx0ZXIoXG4gICAgICAgICh3LCBpLCBhKSA9PiBhLmluZGV4T2YodykgPT09IGksXG4gICAgICApLFxuICAgICAgYXV0aG9ySWQ6IGZha2VyLnJhbmRvbS51dWlkKCksXG4gICAgICBkYXRlOiBmYWtlci5kYXRlLnBhc3QoKS50b0pTT04oKSxcbiAgICB9LFxuICAgIG92ZXJyaWRlcyxcbiAgKVxufVxuXG5mdW5jdGlvbiBsb2dpbkZvcm0ob3ZlcnJpZGVzKSB7XG4gIHJldHVybiBPYmplY3QuYXNzaWduKFxuICAgIHtcbiAgICAgIHVzZXJuYW1lOiBmYWtlci5pbnRlcm5ldC51c2VyTmFtZSgpLFxuICAgICAgcGFzc3dvcmQ6IGZha2VyLmludGVybmV0LnBhc3N3b3JkKCksXG4gICAgfSxcbiAgICBvdmVycmlkZXMsXG4gIClcbn1cblxuZnVuY3Rpb24gdG9rZW4odXNlcikge1xuICByZXR1cm4gZ2V0VXNlclRva2VuKHVzZXJEYXRhKHVzZXIpKVxufVxuXG5tb2R1bGUuZXhwb3J0cyA9IHtcbiAgdXNlckRhdGEsXG4gIHBvc3REYXRhLFxuICBsb2dpbkZvcm0sXG4gIHRva2VuLFxuICBwYXNzd29yZDogZmFrZXIuaW50ZXJuZXQucGFzc3dvcmQsXG4gIHVzZXJuYW1lOiBmYWtlci5pbnRlcm5ldC51c2VyTmFtZSxcbiAgaWQ6IGZha2VyLnJhbmRvbS51dWlkLFxuICB0aXRsZTogZmFrZXIubG9yZW0ud29yZHMsXG59XG4iXX0=",
+    "ast": null,
+    "map": {
+      "version": 3,
+      "sources": [
+        "generate.js"
+      ],
+      "names": [
+        "omit",
+        "require",
+        "faker",
+        "getSaltAndHash",
+        "getUserToken",
+        "userData",
+        "overrides",
+        "password",
+        "internet",
+        "Object",
+        "assign",
+        "username",
+        "userName",
+        "postData",
+        "title",
+        "lorem",
+        "words",
+        "content",
+        "paragraphs",
+        "replace",
+        "tags",
+        "word",
+        "filter",
+        "w",
+        "i",
+        "a",
+        "indexOf",
+        "authorId",
+        "random",
+        "uuid",
+        "date",
+        "past",
+        "toJSON",
+        "loginForm",
+        "token",
+        "user",
+        "module",
+        "exports",
+        "id"
+      ],
+      "mappings": "AAAA,MAAMA,OAAOC,QAAQ,aAAR,CAAb;AACA,MAAMC,QAAQD,QAAQ,OAAR,CAAd;AACA,MAAM,EAACE,cAAD,EAAiBC,YAAjB,KAAiCH,QAAQ,QAAR,CAAvC;;AAEA,SAASI,QAAT,CAAkBC,YAAY,EAA9B,EAAkC;AAChC,QAAMC,WAAWD,UAAUC,QAAV,IAAsBL,MAAMM,QAAN,CAAeD,QAAf,EAAvC;AACA,SAAOE,OAAOC,MAAP,CACL;AACEC,cAAUT,MAAMM,QAAN,CAAeI,QAAf;AADZ,GADK,EAILT,eAAeI,QAAf,CAJK,EAKLP,KAAKM,SAAL,EAAgB,CAAC,UAAD,CAAhB,CALK,CAAP;AAOD;;AAED,SAASO,QAAT,CAAkBP,SAAlB,EAA6B;AAC3B,SAAOG,OAAOC,MAAP,CACL;AACEI,WAAOZ,MAAMa,KAAN,CAAYC,KAAZ,EADT;AAEE;AACA;AACAC,aAASf,MAAMa,KAAN,CAAYG,UAAZ,GAAyBC,OAAzB,CAAiC,KAAjC,EAAwC,EAAxC,CAJX;AAKEC,UAAM,CAAClB,MAAMa,KAAN,CAAYM,IAAZ,EAAD,EAAqBnB,MAAMa,KAAN,CAAYM,IAAZ,EAArB,EAAyCnB,MAAMa,KAAN,CAAYM,IAAZ,EAAzC,EAA6DC,MAA7D,CACJ,CAACC,CAAD,EAAIC,CAAJ,EAAOC,CAAP,KAAaA,EAAEC,OAAF,CAAUH,CAAV,MAAiBC,CAD1B,CALR;AAQEG,cAAUzB,MAAM0B,MAAN,CAAaC,IAAb,EARZ;AASEC,UAAM5B,MAAM4B,IAAN,CAAWC,IAAX,GAAkBC,MAAlB;AATR,GADK,EAYL1B,SAZK,CAAP;AAcD;;AAED,SAAS2B,SAAT,CAAmB3B,SAAnB,EAA8B;AAC5B,SAAOG,OAAOC,MAAP,CACL;AACEC,cAAUT,MAAMM,QAAN,CAAeI,QAAf,EADZ;AAEEL,cAAUL,MAAMM,QAAN,CAAeD,QAAf;AAFZ,GADK,EAKLD,SALK,CAAP;AAOD;;AAED,SAAS4B,KAAT,CAAeC,IAAf,EAAqB;AACnB,SAAO/B,aAAaC,SAAS8B,IAAT,CAAb,CAAP;AACD;;AAEDC,OAAOC,OAAP,GAAiB;AACfhC,UADe;AAEfQ,UAFe;AAGfoB,WAHe;AAIfC,OAJe;AAKf3B,YAAUL,MAAMM,QAAN,CAAeD,QALV;AAMfI,YAAUT,MAAMM,QAAN,CAAeI,QANV;AAOf0B,MAAIpC,MAAM0B,MAAN,CAAaC,IAPF;AAQff,SAAOZ,MAAMa,KAAN,CAAYC;AARJ,CAAjB",
+      "file": "generate.js",
+      "sourceRoot": "C:/Users/spyra/Work/fem-testing-react/shared",
+      "sourcesContent": [
+        "const omit = require('lodash.omit')\nconst faker = require('faker')\nconst {getSaltAndHash, getUserToken} = require('./auth')\n\nfunction userData(overrides = {}) {\n  const password = overrides.password || faker.internet.password()\n  return Object.assign(\n    {\n      username: faker.internet.userName(),\n    },\n    getSaltAndHash(password),\n    omit(overrides, ['password']),\n  )\n}\n\nfunction postData(overrides) {\n  return Object.assign(\n    {\n      title: faker.lorem.words(),\n      // paragraphs return text with \\n\\r for newlines\n      // jsdom doesn't like \\r very much I think...\n      content: faker.lorem.paragraphs().replace(/\\r/g, ''),\n      tags: [faker.lorem.word(), faker.lorem.word(), faker.lorem.word()].filter(\n        (w, i, a) => a.indexOf(w) === i,\n      ),\n      authorId: faker.random.uuid(),\n      date: faker.date.past().toJSON(),\n    },\n    overrides,\n  )\n}\n\nfunction loginForm(overrides) {\n  return Object.assign(\n    {\n      username: faker.internet.userName(),\n      password: faker.internet.password(),\n    },\n    overrides,\n  )\n}\n\nfunction token(user) {\n  return getUserToken(userData(user))\n}\n\nmodule.exports = {\n  userData,\n  postData,\n  loginForm,\n  token,\n  password: faker.internet.password,\n  username: faker.internet.userName,\n  id: faker.random.uuid,\n  title: faker.lorem.words,\n}\n"
+      ]
+    },
+    "mtime": 1551465920254
+  },
+  "{\"filename\":\"C:/Users/spyra/Work/fem-testing-react/shared/auth.js\",\"env\":{},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"sourceRoot\":\"C:/Users/spyra/Work/fem-testing-react/shared\",\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false,\"parserOpts\":false,\"generatorOpts\":false}:6.26.3": {
+    "metadata": {
+      "usedHelpers": [],
+      "marked": [],
+      "modules": {
+        "imports": [],
+        "exports": {
+          "exported": [],
+          "specifiers": []
+        }
+      }
+    },
+    "options": {
+      "filename": "C:/Users/spyra/Work/fem-testing-react/shared/auth.js",
+      "filenameRelative": "C:/Users/spyra/Work/fem-testing-react/shared/auth.js",
+      "env": {},
+      "retainLines": false,
+      "highlightCode": true,
+      "suppressDeprecationMessages": false,
+      "presets": [],
+      "plugins": [],
+      "ignore": [],
+      "code": true,
+      "metadata": true,
+      "ast": false,
+      "comments": true,
+      "compact": "auto",
+      "minified": false,
+      "sourceMaps": "both",
+      "sourceMapTarget": "auth.js",
+      "sourceFileName": "auth.js",
+      "sourceRoot": "C:/Users/spyra/Work/fem-testing-react/shared",
+      "babelrc": false,
+      "sourceType": "module",
+      "moduleRoot": "C:/Users/spyra/Work/fem-testing-react/shared",
+      "moduleIds": false,
+      "passPerPreset": false,
+      "parserOpts": false,
+      "generatorOpts": false,
+      "basename": "auth"
+    },
+    "ignored": false,
+    "code": "const crypto = require('crypto');\nconst jwt = require('jsonwebtoken');\n\nconst secret = 'secret';\n\nconst iterations = process.env.NODE_ENV === 'production' ? 100000 : 1;\n\n// seconds/minute * minutes/hour * hours/day * 60 days\nconst sixtyDaysInSeconds = 60 * 60 * 24 * 60;\n// to keep our tests reliable, we'll use the requireTime if we're not in production\n// and we'll use Date.now() if we are.\nconst requireTime = Date.now();\nconst now = () => process.env.NODE_ENV === 'production' ? Date.now() : requireTime;\n\nfunction getSaltAndHash(password) {\n  const salt = crypto.randomBytes(16).toString('hex');\n  const hash = crypto.pbkdf2Sync(password, salt, iterations, 512, 'sha512').toString('hex');\n  return { salt, hash };\n}\n\nfunction isPasswordValid(password, { salt, hash }) {\n  return hash === crypto.pbkdf2Sync(password, salt, iterations, 512, 'sha512').toString('hex');\n}\n\nfunction getUserToken({ id, username }) {\n  const issuedAt = Math.floor(now() / 1000);\n  return jwt.sign({\n    id,\n    username,\n    iat: issuedAt,\n    exp: issuedAt + sixtyDaysInSeconds\n  }, secret);\n}\n\nmodule.exports = { getSaltAndHash, isPasswordValid, getUserToken, secret };\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImF1dGguanMiXSwibmFtZXMiOlsiY3J5cHRvIiwicmVxdWlyZSIsImp3dCIsInNlY3JldCIsIml0ZXJhdGlvbnMiLCJwcm9jZXNzIiwiZW52IiwiTk9ERV9FTlYiLCJzaXh0eURheXNJblNlY29uZHMiLCJyZXF1aXJlVGltZSIsIkRhdGUiLCJub3ciLCJnZXRTYWx0QW5kSGFzaCIsInBhc3N3b3JkIiwic2FsdCIsInJhbmRvbUJ5dGVzIiwidG9TdHJpbmciLCJoYXNoIiwicGJrZGYyU3luYyIsImlzUGFzc3dvcmRWYWxpZCIsImdldFVzZXJUb2tlbiIsImlkIiwidXNlcm5hbWUiLCJpc3N1ZWRBdCIsIk1hdGgiLCJmbG9vciIsInNpZ24iLCJpYXQiLCJleHAiLCJtb2R1bGUiLCJleHBvcnRzIl0sIm1hcHBpbmdzIjoiQUFBQSxNQUFNQSxTQUFTQyxRQUFRLFFBQVIsQ0FBZjtBQUNBLE1BQU1DLE1BQU1ELFFBQVEsY0FBUixDQUFaOztBQUVBLE1BQU1FLFNBQVMsUUFBZjs7QUFFQSxNQUFNQyxhQUFhQyxRQUFRQyxHQUFSLENBQVlDLFFBQVosS0FBeUIsWUFBekIsR0FBd0MsTUFBeEMsR0FBaUQsQ0FBcEU7O0FBRUE7QUFDQSxNQUFNQyxxQkFBcUIsS0FBSyxFQUFMLEdBQVUsRUFBVixHQUFlLEVBQTFDO0FBQ0E7QUFDQTtBQUNBLE1BQU1DLGNBQWNDLEtBQUtDLEdBQUwsRUFBcEI7QUFDQSxNQUFNQSxNQUFNLE1BQ1ZOLFFBQVFDLEdBQVIsQ0FBWUMsUUFBWixLQUF5QixZQUF6QixHQUF3Q0csS0FBS0MsR0FBTCxFQUF4QyxHQUFxREYsV0FEdkQ7O0FBR0EsU0FBU0csY0FBVCxDQUF3QkMsUUFBeEIsRUFBa0M7QUFDaEMsUUFBTUMsT0FBT2QsT0FBT2UsV0FBUCxDQUFtQixFQUFuQixFQUF1QkMsUUFBdkIsQ0FBZ0MsS0FBaEMsQ0FBYjtBQUNBLFFBQU1DLE9BQU9qQixPQUNWa0IsVUFEVSxDQUNDTCxRQURELEVBQ1dDLElBRFgsRUFDaUJWLFVBRGpCLEVBQzZCLEdBRDdCLEVBQ2tDLFFBRGxDLEVBRVZZLFFBRlUsQ0FFRCxLQUZDLENBQWI7QUFHQSxTQUFPLEVBQUNGLElBQUQsRUFBT0csSUFBUCxFQUFQO0FBQ0Q7O0FBRUQsU0FBU0UsZUFBVCxDQUF5Qk4sUUFBekIsRUFBbUMsRUFBQ0MsSUFBRCxFQUFPRyxJQUFQLEVBQW5DLEVBQWlEO0FBQy9DLFNBQ0VBLFNBQ0FqQixPQUFPa0IsVUFBUCxDQUFrQkwsUUFBbEIsRUFBNEJDLElBQTVCLEVBQWtDVixVQUFsQyxFQUE4QyxHQUE5QyxFQUFtRCxRQUFuRCxFQUE2RFksUUFBN0QsQ0FBc0UsS0FBdEUsQ0FGRjtBQUlEOztBQUVELFNBQVNJLFlBQVQsQ0FBc0IsRUFBQ0MsRUFBRCxFQUFLQyxRQUFMLEVBQXRCLEVBQXNDO0FBQ3BDLFFBQU1DLFdBQVdDLEtBQUtDLEtBQUwsQ0FBV2QsUUFBUSxJQUFuQixDQUFqQjtBQUNBLFNBQU9ULElBQUl3QixJQUFKLENBQ0w7QUFDRUwsTUFERjtBQUVFQyxZQUZGO0FBR0VLLFNBQUtKLFFBSFA7QUFJRUssU0FBS0wsV0FBV2Y7QUFKbEIsR0FESyxFQU9MTCxNQVBLLENBQVA7QUFTRDs7QUFFRDBCLE9BQU9DLE9BQVAsR0FBaUIsRUFBQ2xCLGNBQUQsRUFBaUJPLGVBQWpCLEVBQWtDQyxZQUFsQyxFQUFnRGpCLE1BQWhELEVBQWpCIiwiZmlsZSI6ImF1dGguanMiLCJzb3VyY2VSb290IjoiQzovVXNlcnMvc3B5cmEvV29yay9mZW0tdGVzdGluZy1yZWFjdC9zaGFyZWQiLCJzb3VyY2VzQ29udGVudCI6WyJjb25zdCBjcnlwdG8gPSByZXF1aXJlKCdjcnlwdG8nKVxuY29uc3Qgand0ID0gcmVxdWlyZSgnanNvbndlYnRva2VuJylcblxuY29uc3Qgc2VjcmV0ID0gJ3NlY3JldCdcblxuY29uc3QgaXRlcmF0aW9ucyA9IHByb2Nlc3MuZW52Lk5PREVfRU5WID09PSAncHJvZHVjdGlvbicgPyAxMDAwMDAgOiAxXG5cbi8vIHNlY29uZHMvbWludXRlICogbWludXRlcy9ob3VyICogaG91cnMvZGF5ICogNjAgZGF5c1xuY29uc3Qgc2l4dHlEYXlzSW5TZWNvbmRzID0gNjAgKiA2MCAqIDI0ICogNjBcbi8vIHRvIGtlZXAgb3VyIHRlc3RzIHJlbGlhYmxlLCB3ZSdsbCB1c2UgdGhlIHJlcXVpcmVUaW1lIGlmIHdlJ3JlIG5vdCBpbiBwcm9kdWN0aW9uXG4vLyBhbmQgd2UnbGwgdXNlIERhdGUubm93KCkgaWYgd2UgYXJlLlxuY29uc3QgcmVxdWlyZVRpbWUgPSBEYXRlLm5vdygpXG5jb25zdCBub3cgPSAoKSA9PlxuICBwcm9jZXNzLmVudi5OT0RFX0VOViA9PT0gJ3Byb2R1Y3Rpb24nID8gRGF0ZS5ub3coKSA6IHJlcXVpcmVUaW1lXG5cbmZ1bmN0aW9uIGdldFNhbHRBbmRIYXNoKHBhc3N3b3JkKSB7XG4gIGNvbnN0IHNhbHQgPSBjcnlwdG8ucmFuZG9tQnl0ZXMoMTYpLnRvU3RyaW5nKCdoZXgnKVxuICBjb25zdCBoYXNoID0gY3J5cHRvXG4gICAgLnBia2RmMlN5bmMocGFzc3dvcmQsIHNhbHQsIGl0ZXJhdGlvbnMsIDUxMiwgJ3NoYTUxMicpXG4gICAgLnRvU3RyaW5nKCdoZXgnKVxuICByZXR1cm4ge3NhbHQsIGhhc2h9XG59XG5cbmZ1bmN0aW9uIGlzUGFzc3dvcmRWYWxpZChwYXNzd29yZCwge3NhbHQsIGhhc2h9KSB7XG4gIHJldHVybiAoXG4gICAgaGFzaCA9PT1cbiAgICBjcnlwdG8ucGJrZGYyU3luYyhwYXNzd29yZCwgc2FsdCwgaXRlcmF0aW9ucywgNTEyLCAnc2hhNTEyJykudG9TdHJpbmcoJ2hleCcpXG4gIClcbn1cblxuZnVuY3Rpb24gZ2V0VXNlclRva2VuKHtpZCwgdXNlcm5hbWV9KSB7XG4gIGNvbnN0IGlzc3VlZEF0ID0gTWF0aC5mbG9vcihub3coKSAvIDEwMDApXG4gIHJldHVybiBqd3Quc2lnbihcbiAgICB7XG4gICAgICBpZCxcbiAgICAgIHVzZXJuYW1lLFxuICAgICAgaWF0OiBpc3N1ZWRBdCxcbiAgICAgIGV4cDogaXNzdWVkQXQgKyBzaXh0eURheXNJblNlY29uZHMsXG4gICAgfSxcbiAgICBzZWNyZXQsXG4gIClcbn1cblxubW9kdWxlLmV4cG9ydHMgPSB7Z2V0U2FsdEFuZEhhc2gsIGlzUGFzc3dvcmRWYWxpZCwgZ2V0VXNlclRva2VuLCBzZWNyZXR9XG4iXX0=",
+    "ast": null,
+    "map": {
+      "version": 3,
+      "sources": [
+        "auth.js"
+      ],
+      "names": [
+        "crypto",
+        "require",
+        "jwt",
+        "secret",
+        "iterations",
+        "process",
+        "env",
+        "NODE_ENV",
+        "sixtyDaysInSeconds",
+        "requireTime",
+        "Date",
+        "now",
+        "getSaltAndHash",
+        "password",
+        "salt",
+        "randomBytes",
+        "toString",
+        "hash",
+        "pbkdf2Sync",
+        "isPasswordValid",
+        "getUserToken",
+        "id",
+        "username",
+        "issuedAt",
+        "Math",
+        "floor",
+        "sign",
+        "iat",
+        "exp",
+        "module",
+        "exports"
+      ],
+      "mappings": "AAAA,MAAMA,SAASC,QAAQ,QAAR,CAAf;AACA,MAAMC,MAAMD,QAAQ,cAAR,CAAZ;;AAEA,MAAME,SAAS,QAAf;;AAEA,MAAMC,aAAaC,QAAQC,GAAR,CAAYC,QAAZ,KAAyB,YAAzB,GAAwC,MAAxC,GAAiD,CAApE;;AAEA;AACA,MAAMC,qBAAqB,KAAK,EAAL,GAAU,EAAV,GAAe,EAA1C;AACA;AACA;AACA,MAAMC,cAAcC,KAAKC,GAAL,EAApB;AACA,MAAMA,MAAM,MACVN,QAAQC,GAAR,CAAYC,QAAZ,KAAyB,YAAzB,GAAwCG,KAAKC,GAAL,EAAxC,GAAqDF,WADvD;;AAGA,SAASG,cAAT,CAAwBC,QAAxB,EAAkC;AAChC,QAAMC,OAAOd,OAAOe,WAAP,CAAmB,EAAnB,EAAuBC,QAAvB,CAAgC,KAAhC,CAAb;AACA,QAAMC,OAAOjB,OACVkB,UADU,CACCL,QADD,EACWC,IADX,EACiBV,UADjB,EAC6B,GAD7B,EACkC,QADlC,EAEVY,QAFU,CAED,KAFC,CAAb;AAGA,SAAO,EAACF,IAAD,EAAOG,IAAP,EAAP;AACD;;AAED,SAASE,eAAT,CAAyBN,QAAzB,EAAmC,EAACC,IAAD,EAAOG,IAAP,EAAnC,EAAiD;AAC/C,SACEA,SACAjB,OAAOkB,UAAP,CAAkBL,QAAlB,EAA4BC,IAA5B,EAAkCV,UAAlC,EAA8C,GAA9C,EAAmD,QAAnD,EAA6DY,QAA7D,CAAsE,KAAtE,CAFF;AAID;;AAED,SAASI,YAAT,CAAsB,EAACC,EAAD,EAAKC,QAAL,EAAtB,EAAsC;AACpC,QAAMC,WAAWC,KAAKC,KAAL,CAAWd,QAAQ,IAAnB,CAAjB;AACA,SAAOT,IAAIwB,IAAJ,CACL;AACEL,MADF;AAEEC,YAFF;AAGEK,SAAKJ,QAHP;AAIEK,SAAKL,WAAWf;AAJlB,GADK,EAOLL,MAPK,CAAP;AASD;;AAED0B,OAAOC,OAAP,GAAiB,EAAClB,cAAD,EAAiBO,eAAjB,EAAkCC,YAAlC,EAAgDjB,MAAhD,EAAjB",
+      "file": "auth.js",
+      "sourceRoot": "C:/Users/spyra/Work/fem-testing-react/shared",
+      "sourcesContent": [
+        "const crypto = require('crypto')\nconst jwt = require('jsonwebtoken')\n\nconst secret = 'secret'\n\nconst iterations = process.env.NODE_ENV === 'production' ? 100000 : 1\n\n// seconds/minute * minutes/hour * hours/day * 60 days\nconst sixtyDaysInSeconds = 60 * 60 * 24 * 60\n// to keep our tests reliable, we'll use the requireTime if we're not in production\n// and we'll use Date.now() if we are.\nconst requireTime = Date.now()\nconst now = () =>\n  process.env.NODE_ENV === 'production' ? Date.now() : requireTime\n\nfunction getSaltAndHash(password) {\n  const salt = crypto.randomBytes(16).toString('hex')\n  const hash = crypto\n    .pbkdf2Sync(password, salt, iterations, 512, 'sha512')\n    .toString('hex')\n  return {salt, hash}\n}\n\nfunction isPasswordValid(password, {salt, hash}) {\n  return (\n    hash ===\n    crypto.pbkdf2Sync(password, salt, iterations, 512, 'sha512').toString('hex')\n  )\n}\n\nfunction getUserToken({id, username}) {\n  const issuedAt = Math.floor(now() / 1000)\n  return jwt.sign(\n    {\n      id,\n      username,\n      iat: issuedAt,\n      exp: issuedAt + sixtyDaysInSeconds,\n    },\n    secret,\n  )\n}\n\nmodule.exports = {getSaltAndHash, isPasswordValid, getUserToken, secret}\n"
+      ]
+    },
+    "mtime": 1551465920254
+  },
+  "{\"filename\":\"C:/Users/spyra/Work/fem-testing-react/server/src/utils/db.js\",\"env\":{},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[[[],null],[[],{\"loose\":false}]],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"sourceRoot\":\"C:/Users/spyra/Work/fem-testing-react/server/src/utils\",\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false,\"parserOpts\":false,\"generatorOpts\":false}:6.26.3": {
+    "metadata": {
+      "usedHelpers": [
+        "extends",
+        "interopRequireWildcard"
+      ],
+      "marked": [],
+      "modules": {
+        "imports": [
+          {
+            "source": "til-shared/generate",
+            "imported": [
+              "*"
+            ],
+            "specifiers": [
+              {
+                "kind": "namespace",
+                "local": "generate"
+              }
+            ]
+          }
+        ],
+        "exports": {
+          "exported": [],
+          "specifiers": []
+        }
+      }
+    },
+    "options": {
+      "filename": "C:/Users/spyra/Work/fem-testing-react/server/src/utils/db.js",
+      "filenameRelative": "C:/Users/spyra/Work/fem-testing-react/server/src/utils/db.js",
+      "env": {},
+      "retainLines": false,
+      "highlightCode": true,
+      "suppressDeprecationMessages": false,
+      "presets": [],
+      "plugins": [
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "loose": false
+          }
+        ]
+      ],
+      "ignore": [],
+      "code": true,
+      "metadata": true,
+      "ast": false,
+      "comments": true,
+      "compact": "auto",
+      "minified": false,
+      "sourceMaps": "both",
+      "sourceMapTarget": "db.js",
+      "sourceFileName": "db.js",
+      "sourceRoot": "C:/Users/spyra/Work/fem-testing-react/server/src/utils",
+      "babelrc": false,
+      "sourceType": "module",
+      "moduleRoot": "C:/Users/spyra/Work/fem-testing-react/server/src/utils",
+      "moduleIds": false,
+      "passPerPreset": false,
+      "parserOpts": false,
+      "generatorOpts": false,
+      "basename": "db"
+    },
+    "ignored": false,
+    "code": "'use strict';\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };\n\nvar _generate = require('til-shared/generate');\n\nvar generate = _interopRequireWildcard(_generate);\n\nfunction _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }\n\nconst db = {\n  users: [],\n  posts: [],\n\n  insertUser,\n  getUser,\n  getUsers,\n  updateUser,\n  deleteUser,\n\n  insertPost,\n  getPost,\n  getPosts,\n  updatePost,\n  deletePost\n};\n\nasync function insertUser(user) {\n  const newUser = _extends({}, user, {\n    id: generate.id()\n  });\n  db.users.push(newUser);\n  return newUser;\n}\n\nasync function getUsers(filter) {\n  return filter ? db.users.filter(filter) : [...db.users];\n}\n\nasync function getUser(id) {\n  return (await getUsers(u => u.id === id))[0];\n}\n\nasync function updateUser(id, newInfo) {\n  const user = await getUser(id);\n  // doing this to make a new copy of the user to avoid subtle bugs\n  // that rely on mutation.\n  const newUserWithUpdates = Object.assign({}, user, newInfo);\n  db.users[db.users.indexOf(user)] = newUserWithUpdates;\n  return newUserWithUpdates;\n}\n\nasync function deleteUser(id) {\n  const user = await getUser(id);\n  db.users = db.users.filter(u => u.id !== id);\n  return user;\n}\n\nasync function insertPost(post) {\n  const newPost = _extends({}, post, {\n    id: generate.id()\n  });\n  db.posts.push(newPost);\n  return newPost;\n}\n\nasync function getPosts(filter) {\n  return filter ? db.posts.filter(filter) : [...db.posts];\n}\n\nasync function getPost(id) {\n  return (await getPosts(t => t.id === id))[0];\n}\n\nasync function updatePost(id, newInfo) {\n  const post = await getPost(id);\n  // doing this to make a new copy of the user to avoid subtle bugs\n  // that rely on mutation.\n  const newPostWithUpdates = Object.assign({}, post, newInfo);\n  db.posts[db.posts.indexOf(post)] = newPostWithUpdates;\n  return newPostWithUpdates;\n}\n\nasync function deletePost(id) {\n  const post = await getPost(id);\n  db.posts = db.posts.filter(t => t.id !== id);\n  return post;\n}\n\nexports.default = db;\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRiLmpzIl0sIm5hbWVzIjpbImdlbmVyYXRlIiwiZGIiLCJ1c2VycyIsInBvc3RzIiwiaW5zZXJ0VXNlciIsImdldFVzZXIiLCJnZXRVc2VycyIsInVwZGF0ZVVzZXIiLCJkZWxldGVVc2VyIiwiaW5zZXJ0UG9zdCIsImdldFBvc3QiLCJnZXRQb3N0cyIsInVwZGF0ZVBvc3QiLCJkZWxldGVQb3N0IiwidXNlciIsIm5ld1VzZXIiLCJpZCIsInB1c2giLCJmaWx0ZXIiLCJ1IiwibmV3SW5mbyIsIm5ld1VzZXJXaXRoVXBkYXRlcyIsIk9iamVjdCIsImFzc2lnbiIsImluZGV4T2YiLCJwb3N0IiwibmV3UG9zdCIsInQiLCJuZXdQb3N0V2l0aFVwZGF0ZXMiXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBQUE7O0lBQVlBLFE7Ozs7QUFFWixNQUFNQyxLQUFLO0FBQ1RDLFNBQU8sRUFERTtBQUVUQyxTQUFPLEVBRkU7O0FBSVRDLFlBSlM7QUFLVEMsU0FMUztBQU1UQyxVQU5TO0FBT1RDLFlBUFM7QUFRVEMsWUFSUzs7QUFVVEMsWUFWUztBQVdUQyxTQVhTO0FBWVRDLFVBWlM7QUFhVEMsWUFiUztBQWNUQztBQWRTLENBQVg7O0FBaUJBLGVBQWVULFVBQWYsQ0FBMEJVLElBQTFCLEVBQWdDO0FBQzlCLFFBQU1DLHVCQUNERCxJQURDO0FBRUpFLFFBQUloQixTQUFTZ0IsRUFBVDtBQUZBLElBQU47QUFJQWYsS0FBR0MsS0FBSCxDQUFTZSxJQUFULENBQWNGLE9BQWQ7QUFDQSxTQUFPQSxPQUFQO0FBQ0Q7O0FBRUQsZUFBZVQsUUFBZixDQUF3QlksTUFBeEIsRUFBZ0M7QUFDOUIsU0FBT0EsU0FBU2pCLEdBQUdDLEtBQUgsQ0FBU2dCLE1BQVQsQ0FBZ0JBLE1BQWhCLENBQVQsR0FBbUMsQ0FBQyxHQUFHakIsR0FBR0MsS0FBUCxDQUExQztBQUNEOztBQUVELGVBQWVHLE9BQWYsQ0FBdUJXLEVBQXZCLEVBQTJCO0FBQ3pCLFNBQU8sQ0FBQyxNQUFNVixTQUFTYSxLQUFLQSxFQUFFSCxFQUFGLEtBQVNBLEVBQXZCLENBQVAsRUFBbUMsQ0FBbkMsQ0FBUDtBQUNEOztBQUVELGVBQWVULFVBQWYsQ0FBMEJTLEVBQTFCLEVBQThCSSxPQUE5QixFQUF1QztBQUNyQyxRQUFNTixPQUFPLE1BQU1ULFFBQVFXLEVBQVIsQ0FBbkI7QUFDQTtBQUNBO0FBQ0EsUUFBTUsscUJBQXFCQyxPQUFPQyxNQUFQLENBQWMsRUFBZCxFQUFrQlQsSUFBbEIsRUFBd0JNLE9BQXhCLENBQTNCO0FBQ0FuQixLQUFHQyxLQUFILENBQVNELEdBQUdDLEtBQUgsQ0FBU3NCLE9BQVQsQ0FBaUJWLElBQWpCLENBQVQsSUFBbUNPLGtCQUFuQztBQUNBLFNBQU9BLGtCQUFQO0FBQ0Q7O0FBRUQsZUFBZWIsVUFBZixDQUEwQlEsRUFBMUIsRUFBOEI7QUFDNUIsUUFBTUYsT0FBTyxNQUFNVCxRQUFRVyxFQUFSLENBQW5CO0FBQ0FmLEtBQUdDLEtBQUgsR0FBV0QsR0FBR0MsS0FBSCxDQUFTZ0IsTUFBVCxDQUFnQkMsS0FBS0EsRUFBRUgsRUFBRixLQUFTQSxFQUE5QixDQUFYO0FBQ0EsU0FBT0YsSUFBUDtBQUNEOztBQUVELGVBQWVMLFVBQWYsQ0FBMEJnQixJQUExQixFQUFnQztBQUM5QixRQUFNQyx1QkFDREQsSUFEQztBQUVKVCxRQUFJaEIsU0FBU2dCLEVBQVQ7QUFGQSxJQUFOO0FBSUFmLEtBQUdFLEtBQUgsQ0FBU2MsSUFBVCxDQUFjUyxPQUFkO0FBQ0EsU0FBT0EsT0FBUDtBQUNEOztBQUVELGVBQWVmLFFBQWYsQ0FBd0JPLE1BQXhCLEVBQWdDO0FBQzlCLFNBQU9BLFNBQVNqQixHQUFHRSxLQUFILENBQVNlLE1BQVQsQ0FBZ0JBLE1BQWhCLENBQVQsR0FBbUMsQ0FBQyxHQUFHakIsR0FBR0UsS0FBUCxDQUExQztBQUNEOztBQUVELGVBQWVPLE9BQWYsQ0FBdUJNLEVBQXZCLEVBQTJCO0FBQ3pCLFNBQU8sQ0FBQyxNQUFNTCxTQUFTZ0IsS0FBS0EsRUFBRVgsRUFBRixLQUFTQSxFQUF2QixDQUFQLEVBQW1DLENBQW5DLENBQVA7QUFDRDs7QUFFRCxlQUFlSixVQUFmLENBQTBCSSxFQUExQixFQUE4QkksT0FBOUIsRUFBdUM7QUFDckMsUUFBTUssT0FBTyxNQUFNZixRQUFRTSxFQUFSLENBQW5CO0FBQ0E7QUFDQTtBQUNBLFFBQU1ZLHFCQUFxQk4sT0FBT0MsTUFBUCxDQUFjLEVBQWQsRUFBa0JFLElBQWxCLEVBQXdCTCxPQUF4QixDQUEzQjtBQUNBbkIsS0FBR0UsS0FBSCxDQUFTRixHQUFHRSxLQUFILENBQVNxQixPQUFULENBQWlCQyxJQUFqQixDQUFULElBQW1DRyxrQkFBbkM7QUFDQSxTQUFPQSxrQkFBUDtBQUNEOztBQUVELGVBQWVmLFVBQWYsQ0FBMEJHLEVBQTFCLEVBQThCO0FBQzVCLFFBQU1TLE9BQU8sTUFBTWYsUUFBUU0sRUFBUixDQUFuQjtBQUNBZixLQUFHRSxLQUFILEdBQVdGLEdBQUdFLEtBQUgsQ0FBU2UsTUFBVCxDQUFnQlMsS0FBS0EsRUFBRVgsRUFBRixLQUFTQSxFQUE5QixDQUFYO0FBQ0EsU0FBT1MsSUFBUDtBQUNEOztrQkFFY3hCLEUiLCJmaWxlIjoiZGIuanMiLCJzb3VyY2VSb290IjoiQzovVXNlcnMvc3B5cmEvV29yay9mZW0tdGVzdGluZy1yZWFjdC9zZXJ2ZXIvc3JjL3V0aWxzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0ICogYXMgZ2VuZXJhdGUgZnJvbSAndGlsLXNoYXJlZC9nZW5lcmF0ZSdcblxuY29uc3QgZGIgPSB7XG4gIHVzZXJzOiBbXSxcbiAgcG9zdHM6IFtdLFxuXG4gIGluc2VydFVzZXIsXG4gIGdldFVzZXIsXG4gIGdldFVzZXJzLFxuICB1cGRhdGVVc2VyLFxuICBkZWxldGVVc2VyLFxuXG4gIGluc2VydFBvc3QsXG4gIGdldFBvc3QsXG4gIGdldFBvc3RzLFxuICB1cGRhdGVQb3N0LFxuICBkZWxldGVQb3N0LFxufVxuXG5hc3luYyBmdW5jdGlvbiBpbnNlcnRVc2VyKHVzZXIpIHtcbiAgY29uc3QgbmV3VXNlciA9IHtcbiAgICAuLi51c2VyLFxuICAgIGlkOiBnZW5lcmF0ZS5pZCgpLFxuICB9XG4gIGRiLnVzZXJzLnB1c2gobmV3VXNlcilcbiAgcmV0dXJuIG5ld1VzZXJcbn1cblxuYXN5bmMgZnVuY3Rpb24gZ2V0VXNlcnMoZmlsdGVyKSB7XG4gIHJldHVybiBmaWx0ZXIgPyBkYi51c2Vycy5maWx0ZXIoZmlsdGVyKSA6IFsuLi5kYi51c2Vyc11cbn1cblxuYXN5bmMgZnVuY3Rpb24gZ2V0VXNlcihpZCkge1xuICByZXR1cm4gKGF3YWl0IGdldFVzZXJzKHUgPT4gdS5pZCA9PT0gaWQpKVswXVxufVxuXG5hc3luYyBmdW5jdGlvbiB1cGRhdGVVc2VyKGlkLCBuZXdJbmZvKSB7XG4gIGNvbnN0IHVzZXIgPSBhd2FpdCBnZXRVc2VyKGlkKVxuICAvLyBkb2luZyB0aGlzIHRvIG1ha2UgYSBuZXcgY29weSBvZiB0aGUgdXNlciB0byBhdm9pZCBzdWJ0bGUgYnVnc1xuICAvLyB0aGF0IHJlbHkgb24gbXV0YXRpb24uXG4gIGNvbnN0IG5ld1VzZXJXaXRoVXBkYXRlcyA9IE9iamVjdC5hc3NpZ24oe30sIHVzZXIsIG5ld0luZm8pXG4gIGRiLnVzZXJzW2RiLnVzZXJzLmluZGV4T2YodXNlcildID0gbmV3VXNlcldpdGhVcGRhdGVzXG4gIHJldHVybiBuZXdVc2VyV2l0aFVwZGF0ZXNcbn1cblxuYXN5bmMgZnVuY3Rpb24gZGVsZXRlVXNlcihpZCkge1xuICBjb25zdCB1c2VyID0gYXdhaXQgZ2V0VXNlcihpZClcbiAgZGIudXNlcnMgPSBkYi51c2Vycy5maWx0ZXIodSA9PiB1LmlkICE9PSBpZClcbiAgcmV0dXJuIHVzZXJcbn1cblxuYXN5bmMgZnVuY3Rpb24gaW5zZXJ0UG9zdChwb3N0KSB7XG4gIGNvbnN0IG5ld1Bvc3QgPSB7XG4gICAgLi4ucG9zdCxcbiAgICBpZDogZ2VuZXJhdGUuaWQoKSxcbiAgfVxuICBkYi5wb3N0cy5wdXNoKG5ld1Bvc3QpXG4gIHJldHVybiBuZXdQb3N0XG59XG5cbmFzeW5jIGZ1bmN0aW9uIGdldFBvc3RzKGZpbHRlcikge1xuICByZXR1cm4gZmlsdGVyID8gZGIucG9zdHMuZmlsdGVyKGZpbHRlcikgOiBbLi4uZGIucG9zdHNdXG59XG5cbmFzeW5jIGZ1bmN0aW9uIGdldFBvc3QoaWQpIHtcbiAgcmV0dXJuIChhd2FpdCBnZXRQb3N0cyh0ID0+IHQuaWQgPT09IGlkKSlbMF1cbn1cblxuYXN5bmMgZnVuY3Rpb24gdXBkYXRlUG9zdChpZCwgbmV3SW5mbykge1xuICBjb25zdCBwb3N0ID0gYXdhaXQgZ2V0UG9zdChpZClcbiAgLy8gZG9pbmcgdGhpcyB0byBtYWtlIGEgbmV3IGNvcHkgb2YgdGhlIHVzZXIgdG8gYXZvaWQgc3VidGxlIGJ1Z3NcbiAgLy8gdGhhdCByZWx5IG9uIG11dGF0aW9uLlxuICBjb25zdCBuZXdQb3N0V2l0aFVwZGF0ZXMgPSBPYmplY3QuYXNzaWduKHt9LCBwb3N0LCBuZXdJbmZvKVxuICBkYi5wb3N0c1tkYi5wb3N0cy5pbmRleE9mKHBvc3QpXSA9IG5ld1Bvc3RXaXRoVXBkYXRlc1xuICByZXR1cm4gbmV3UG9zdFdpdGhVcGRhdGVzXG59XG5cbmFzeW5jIGZ1bmN0aW9uIGRlbGV0ZVBvc3QoaWQpIHtcbiAgY29uc3QgcG9zdCA9IGF3YWl0IGdldFBvc3QoaWQpXG4gIGRiLnBvc3RzID0gZGIucG9zdHMuZmlsdGVyKHQgPT4gdC5pZCAhPT0gaWQpXG4gIHJldHVybiBwb3N0XG59XG5cbmV4cG9ydCBkZWZhdWx0IGRiXG4iXX0=",
+    "ast": null,
+    "map": {
+      "version": 3,
+      "sources": [
+        "db.js"
+      ],
+      "names": [
+        "generate",
+        "db",
+        "users",
+        "posts",
+        "insertUser",
+        "getUser",
+        "getUsers",
+        "updateUser",
+        "deleteUser",
+        "insertPost",
+        "getPost",
+        "getPosts",
+        "updatePost",
+        "deletePost",
+        "user",
+        "newUser",
+        "id",
+        "push",
+        "filter",
+        "u",
+        "newInfo",
+        "newUserWithUpdates",
+        "Object",
+        "assign",
+        "indexOf",
+        "post",
+        "newPost",
+        "t",
+        "newPostWithUpdates"
+      ],
+      "mappings": ";;;;;;;;AAAA;;IAAYA,Q;;;;AAEZ,MAAMC,KAAK;AACTC,SAAO,EADE;AAETC,SAAO,EAFE;;AAITC,YAJS;AAKTC,SALS;AAMTC,UANS;AAOTC,YAPS;AAQTC,YARS;;AAUTC,YAVS;AAWTC,SAXS;AAYTC,UAZS;AAaTC,YAbS;AAcTC;AAdS,CAAX;;AAiBA,eAAeT,UAAf,CAA0BU,IAA1B,EAAgC;AAC9B,QAAMC,uBACDD,IADC;AAEJE,QAAIhB,SAASgB,EAAT;AAFA,IAAN;AAIAf,KAAGC,KAAH,CAASe,IAAT,CAAcF,OAAd;AACA,SAAOA,OAAP;AACD;;AAED,eAAeT,QAAf,CAAwBY,MAAxB,EAAgC;AAC9B,SAAOA,SAASjB,GAAGC,KAAH,CAASgB,MAAT,CAAgBA,MAAhB,CAAT,GAAmC,CAAC,GAAGjB,GAAGC,KAAP,CAA1C;AACD;;AAED,eAAeG,OAAf,CAAuBW,EAAvB,EAA2B;AACzB,SAAO,CAAC,MAAMV,SAASa,KAAKA,EAAEH,EAAF,KAASA,EAAvB,CAAP,EAAmC,CAAnC,CAAP;AACD;;AAED,eAAeT,UAAf,CAA0BS,EAA1B,EAA8BI,OAA9B,EAAuC;AACrC,QAAMN,OAAO,MAAMT,QAAQW,EAAR,CAAnB;AACA;AACA;AACA,QAAMK,qBAAqBC,OAAOC,MAAP,CAAc,EAAd,EAAkBT,IAAlB,EAAwBM,OAAxB,CAA3B;AACAnB,KAAGC,KAAH,CAASD,GAAGC,KAAH,CAASsB,OAAT,CAAiBV,IAAjB,CAAT,IAAmCO,kBAAnC;AACA,SAAOA,kBAAP;AACD;;AAED,eAAeb,UAAf,CAA0BQ,EAA1B,EAA8B;AAC5B,QAAMF,OAAO,MAAMT,QAAQW,EAAR,CAAnB;AACAf,KAAGC,KAAH,GAAWD,GAAGC,KAAH,CAASgB,MAAT,CAAgBC,KAAKA,EAAEH,EAAF,KAASA,EAA9B,CAAX;AACA,SAAOF,IAAP;AACD;;AAED,eAAeL,UAAf,CAA0BgB,IAA1B,EAAgC;AAC9B,QAAMC,uBACDD,IADC;AAEJT,QAAIhB,SAASgB,EAAT;AAFA,IAAN;AAIAf,KAAGE,KAAH,CAASc,IAAT,CAAcS,OAAd;AACA,SAAOA,OAAP;AACD;;AAED,eAAef,QAAf,CAAwBO,MAAxB,EAAgC;AAC9B,SAAOA,SAASjB,GAAGE,KAAH,CAASe,MAAT,CAAgBA,MAAhB,CAAT,GAAmC,CAAC,GAAGjB,GAAGE,KAAP,CAA1C;AACD;;AAED,eAAeO,OAAf,CAAuBM,EAAvB,EAA2B;AACzB,SAAO,CAAC,MAAML,SAASgB,KAAKA,EAAEX,EAAF,KAASA,EAAvB,CAAP,EAAmC,CAAnC,CAAP;AACD;;AAED,eAAeJ,UAAf,CAA0BI,EAA1B,EAA8BI,OAA9B,EAAuC;AACrC,QAAMK,OAAO,MAAMf,QAAQM,EAAR,CAAnB;AACA;AACA;AACA,QAAMY,qBAAqBN,OAAOC,MAAP,CAAc,EAAd,EAAkBE,IAAlB,EAAwBL,OAAxB,CAA3B;AACAnB,KAAGE,KAAH,CAASF,GAAGE,KAAH,CAASqB,OAAT,CAAiBC,IAAjB,CAAT,IAAmCG,kBAAnC;AACA,SAAOA,kBAAP;AACD;;AAED,eAAef,UAAf,CAA0BG,EAA1B,EAA8B;AAC5B,QAAMS,OAAO,MAAMf,QAAQM,EAAR,CAAnB;AACAf,KAAGE,KAAH,GAAWF,GAAGE,KAAH,CAASe,MAAT,CAAgBS,KAAKA,EAAEX,EAAF,KAASA,EAA9B,CAAX;AACA,SAAOS,IAAP;AACD;;kBAEcxB,E",
+      "file": "db.js",
+      "sourceRoot": "C:/Users/spyra/Work/fem-testing-react/server/src/utils",
+      "sourcesContent": [
+        "import * as generate from 'til-shared/generate'\n\nconst db = {\n  users: [],\n  posts: [],\n\n  insertUser,\n  getUser,\n  getUsers,\n  updateUser,\n  deleteUser,\n\n  insertPost,\n  getPost,\n  getPosts,\n  updatePost,\n  deletePost,\n}\n\nasync function insertUser(user) {\n  const newUser = {\n    ...user,\n    id: generate.id(),\n  }\n  db.users.push(newUser)\n  return newUser\n}\n\nasync function getUsers(filter) {\n  return filter ? db.users.filter(filter) : [...db.users]\n}\n\nasync function getUser(id) {\n  return (await getUsers(u => u.id === id))[0]\n}\n\nasync function updateUser(id, newInfo) {\n  const user = await getUser(id)\n  // doing this to make a new copy of the user to avoid subtle bugs\n  // that rely on mutation.\n  const newUserWithUpdates = Object.assign({}, user, newInfo)\n  db.users[db.users.indexOf(user)] = newUserWithUpdates\n  return newUserWithUpdates\n}\n\nasync function deleteUser(id) {\n  const user = await getUser(id)\n  db.users = db.users.filter(u => u.id !== id)\n  return user\n}\n\nasync function insertPost(post) {\n  const newPost = {\n    ...post,\n    id: generate.id(),\n  }\n  db.posts.push(newPost)\n  return newPost\n}\n\nasync function getPosts(filter) {\n  return filter ? db.posts.filter(filter) : [...db.posts]\n}\n\nasync function getPost(id) {\n  return (await getPosts(t => t.id === id))[0]\n}\n\nasync function updatePost(id, newInfo) {\n  const post = await getPost(id)\n  // doing this to make a new copy of the user to avoid subtle bugs\n  // that rely on mutation.\n  const newPostWithUpdates = Object.assign({}, post, newInfo)\n  db.posts[db.posts.indexOf(post)] = newPostWithUpdates\n  return newPostWithUpdates\n}\n\nasync function deletePost(id) {\n  const post = await getPost(id)\n  db.posts = db.posts.filter(t => t.id !== id)\n  return post\n}\n\nexport default db\n"
+      ]
+    },
+    "mtime": 1551465920249
+  }
+}
