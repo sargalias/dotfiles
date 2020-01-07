@@ -5,7 +5,7 @@
 	editor = code --wait
 	autocrlf = true
 	safecrlf = false
-	excludesfile = ~/.gitignore
+	excludesfile = ~/.gitignore-global
 	ignorecase = false
 [merge]
 	ff = no

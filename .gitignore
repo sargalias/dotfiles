@@ -1,9 +1,3 @@
-# Programming
-.idea/
-.vscode/
-node_modules/
-
-# User
 .bash_history
 .config
 .electron/
